@@ -488,7 +488,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-12-02 16:48:11'>2023-12-01 16:44</time>
+            发布时间 : <time class="date" title='最后更新: 2023-12-02 17:16:34'>2023-12-01 16:44</time>
         
     </div>
     <div class="article-meta">
@@ -528,7 +528,7 @@
       
         <h2 id="站内消息系统设计"><a href="#站内消息系统设计" class="headerlink" title="站内消息系统设计"></a>站内消息系统设计</h2><h4 id="什么是站内消息系统？"><a href="#什么是站内消息系统？" class="headerlink" title="什么是站内消息系统？"></a>什么是站内消息系统？</h4><p>简单的来说就是负责一个系统内的消息通知的系统就是站内消息系统。</p>
 <p>举个例子：b站的系统消息，关注、私信、点赞都是站内消息</p>
-<p><img src="https://gitee.com/there-is-xiao-zheng-at-home/blog-img/raw/master/%E7%AB%99%E5%86%85%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/b%E7%AB%99%E6%A0%B7%E4%BE%8B.png" alt="b站样例"></p>
+<p><img src="https://github.com/EyeDroplyq/myblog-img/blob/master/%E7%AB%99%E5%86%85%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/b%E7%AB%99%E6%A0%B7%E4%BE%8B.png?raw=true" alt="b站样例"></p>
 <h4 id="设计方案"><a href="#设计方案" class="headerlink" title="设计方案"></a>设计方案</h4><p>对于一个系统来说，站内的消息是需要进行分类的，我感觉可以按照b站的这个来分类，分为 <strong>系统通知</strong>、<strong>由用户行为导致的回复、@、点赞通知</strong> </p>
 <h5 id="系统通知消息"><a href="#系统通知消息" class="headerlink" title="系统通知消息"></a>系统通知消息</h5><p>对于系统通知消息来说，一般是由后台系统发出的消息，但是也是需要进行分类的，按照消息的发放范围可以分为给单个用户发送通知、给全体用户发送通知、给VIP用户发送通知等等，具体的由你的系统业务来确定。</p>
 <p>首先先来看一下数据表的设计，然后再说后序的设计</p>
@@ -686,7 +686,7 @@
 <p>消息聚合，消息聚合一般就是当一条评论有多个点赞，或者多个回复、或者多个@的时候，一般会通过分组统计一个数量，给用户一个共xx个点赞这种通知，需要做的就是进行分组通知数量。</p>
 <p>​	当然可以根据你们项目的实际需要对上面的表进行拆分，分成点赞表、评论表、@表等</p>
 <h5 id="私信"><a href="#私信" class="headerlink" title="私信"></a>私信</h5><p>私信的设计就是点对点的消息，其实就是一个聊天系统，所以就涉及到聊天系统的设计了，这里就不做具体的阐述了，可以使用netty来做一个聊天室的系统嵌入进入。实时性要好。</p>
-<h5 id="开关的设置"><a href="#开关的设置" class="headerlink" title="开关的设置"></a>开关的设置</h5><p><img src="https://gitee.com/there-is-xiao-zheng-at-home/blog-img/raw/master/%E7%AB%99%E5%86%85%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/b%E7%AB%99%E6%B6%88%E6%81%AF%E8%AE%BE%E7%BD%AE.png" alt="b站消息设置"></p>
+<h5 id="开关的设置"><a href="#开关的设置" class="headerlink" title="开关的设置"></a>开关的设置</h5><p><img src="https://github.com/EyeDroplyq/myblog-img/blob/master/%E7%AB%99%E5%86%85%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/b%E7%AB%99%E6%B6%88%E6%81%AF%E8%AE%BE%E7%BD%AE.png?raw=true" alt="b站消息设置"></p>
 <p>我们也可以按照b站这种设计来对消息的提醒设置一些开关，可以由用户来确定接收什么类型的消息通知。</p>
 <p>表的设计</p>
 <p>t_message_notice_switch</p>
