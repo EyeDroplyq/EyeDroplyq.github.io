@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>秒杀系统的设计方案 | 我的博客</title>
-  <meta name="keywords" content=" 秒杀系统的设计方案 ">
-  <meta name="description" content="秒杀系统的设计方案 | 我的博客">
+  <title>站内消息系统设计 | 我的博客</title>
+  <meta name="keywords" content=" 站内消息系统设计 ">
+  <meta name="description" content="站内消息系统设计 | 我的博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="RPC系统设计RPC系统设计架构图 设计方案首先一个RPC系统的设计主要由下面的几部分组成：  注册中心  ​	服务提供者将自己的ip地址和端口号注册到注册中心，服务消费者从注册中心中进行订阅然后得到对应的服务的地址来进行调用  服务提供者  ​	服务的提供者  服务消费者  ​	服务的消费者  序列化&#x2F;反序列化  ​	在网络传输中只能传输二进制对象，不能直接传输Java中的Java B">
 <meta property="og:type" content="article">
@@ -461,9 +461,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-秒杀系统的设计方案" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-站内消息系统设计" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">秒杀系统的设计方案</h1>
+        <h1 class="article-title">站内消息系统设计</h1>
     
     <div class="article-meta">
         
@@ -481,14 +481,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">秒杀系统的设计方案</a>
+            <a class="color4">站内消息系统设计</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-11-26 13:57:52'>2023-11-26 13:41</time>
+            发布时间 : <time class="date" title='最后更新: 2023-12-02 16:48:11'>2023-12-01 16:44</time>
         
     </div>
     <div class="article-meta">
@@ -510,7 +510,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88"><span class="toc-text">秒杀系统的设计方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E7%83%AD%E7%82%B9%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-text">1、热点数据处理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E7%83%AD%E7%82%B9%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-text">静态热点数据处理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E7%83%AD%E7%82%B9%E6%95%B0%E6%8D%AE%E7%9A%84%E5%A4%84%E7%90%86%EF%BC%9A"><span class="toc-text">动态热点数据的处理：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%AB%98%E5%8F%AF%E7%94%A8"><span class="toc-text">2、高可用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E9%AB%98%E5%B9%B6%E5%8F%91"><span class="toc-text">3、高并发</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E9%99%90%E6%B5%81"><span class="toc-text">1、限流</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E6%B5%81%E9%87%8F%E5%89%8A%E5%B3%B0"><span class="toc-text">2、流量削峰</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E9%99%8D%E7%BA%A7"><span class="toc-text">3、降级</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E7%86%94%E6%96%AD"><span class="toc-text">4、熔断</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">5、一致性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6%E3%80%81%E5%B9%82%E7%AD%89%E6%80%A7"><span class="toc-text">6、幂等性</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-text">总结：</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AB%99%E5%86%85%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1"><span class="toc-text">站内消息系统设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E7%AB%99%E5%86%85%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F%EF%BC%9F"><span class="toc-text">什么是站内消息系统？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88"><span class="toc-text">设计方案</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E9%80%9A%E7%9F%A5%E6%B6%88%E6%81%AF"><span class="toc-text">系统通知消息</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%94%B1%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA%E5%AF%BC%E8%87%B4%E7%9A%84%E7%82%B9%E8%B5%9E%E3%80%81%E8%AF%84%E8%AE%BA%E3%80%81-%E6%B6%88%E6%81%AF"><span class="toc-text">由用户行为导致的点赞、评论、@消息</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%A7%81%E4%BF%A1"><span class="toc-text">私信</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BC%80%E5%85%B3%E7%9A%84%E8%AE%BE%E7%BD%AE"><span class="toc-text">开关的设置</span></a></li></ol></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -526,35 +526,216 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="秒杀系统的设计方案"><a href="#秒杀系统的设计方案" class="headerlink" title="秒杀系统的设计方案"></a>秒杀系统的设计方案</h2><p>对于一个秒杀系统来说，最关键的肯定是大并发量了，秒杀系统就是典型的互联网三高系统的一个应用。三高分别是：高并发、高性能、高可用。</p>
-<h4 id="1、热点数据处理"><a href="#1、热点数据处理" class="headerlink" title="1、热点数据处理"></a>1、热点数据处理</h4><h5 id="静态热点数据处理"><a href="#静态热点数据处理" class="headerlink" title="静态热点数据处理"></a>静态热点数据处理</h5><p>对于一个秒杀系统来说肯定会产生热点数据。比如要进行秒杀的商品就会变成一个热点数据，在短时间内会有非常非常大的流量。</p>
-<p>所以我想第一步就是先处理热点数据。对于秒杀系统来说，这个热点数据我们程序员其实是知道的，因为我们要秒杀什么商品是确定的，所以我们可以提前进行准备来防止我们的系统崩溃掉。对于秒杀商品需要的静态资源，比如html、css、js来说我们可以使用静态热点数据处理法来处理。比较成熟的技术就是使用CDN来处理静态资源的热点数据。我们可以使用稳定的云厂商的服务比如阿里云、腾讯云、华为云、青云等</p>
-<h5 id="动态热点数据的处理："><a href="#动态热点数据的处理：" class="headerlink" title="动态热点数据的处理："></a>动态热点数据的处理：</h5><p>有很多场景下其实都是动态热点数据，意思是：我们没办法提前知道哪些数据是热点数据。对于这类热点数据我们称之为动态热点数据。对于动态热点数据的处理方法，我们需要有热点数据监测的能力。来实时监测系统中的数据，来及时的发现哪些数据是热点数据。</p>
-<p>热点数据监测工具可以使用京东开源的hotkey中间件，如果我们使用了redis作为缓存的话，我们可以使用redis的热key监测技术来监测redis中的热key来及时发现热点数据。</p>
-<p>我们一般会将热点数据放到缓存中去，但是如果仅仅使用类似于redis这样的缓存中间件来缓存热点数据的话redis集群很可能会被干掉了。所以我们会将并发量非常非常大的数据考虑放到jvm内存中去，因为在jvm内存中是最快的，没有网络开销。</p>
-<p>redis的热key探测方案：</p>
-<p>1、修改redis的sdk，记录每次请求，定时将收集到的请求上报，然后做一个统一的处理。</p>
-<p>2、<strong>代理层上报</strong>：如果所有的请求都走代理层的话，可以在代理层进行请求的收集然后进行上报，然后再由外部的其他系统进行解析分析和计算</p>
-<p>3、redis定时扫描：redis本身有命令可以来扫描整个keyspace的热key,这个命令是redis-cli –hotkeys，但是这个命令耗时太久，耗时和redis中缓存的数量成正比。所以性能比较差。</p>
-<p>4、Redis节点抓包分析：在可能存在热key的节点上进行抓包，然后进行分析、计算。但是有一个问题，对于一个热key的redis节点来说，请求量是非常大的，如果我们还进行抓包的话，可能更加影响性能，会使情况更加糟糕。</p>
-<h4 id="2、高可用"><a href="#2、高可用" class="headerlink" title="2、高可用"></a>2、高可用</h4><p>保证高可用的话，我们一般就是使用集群来进行处理。比如对于缓存来说，如果我们使用的是redis的话，我们可以使用redis的sentinel哨兵模式来搭建redis集群来提高系统的可用性，让我们的系统实现高可用。</p>
-<p> 为什么不使用redis的一主多从技术呢？因为如果一个master宕机之后，一个slave变成了master的话，我们需要手动的去修改客户端访问master的地址，另外还要让其他的slave去复制这个新的master的数据。这都需要人工手动干预，而使用sentinel哨兵模式的话，可以自动实现，不需要手动人工干预。</p>
-<h4 id="3、高并发"><a href="#3、高并发" class="headerlink" title="3、高并发"></a>3、高并发</h4><h5 id="1、限流"><a href="#1、限流" class="headerlink" title="1、限流"></a>1、限流</h5><p>解决高并发的一个偷懒的办法就是来进行限流了，我们来规定最大流量，让流量在系统可以接收的范围之内，这样我们的系统就不会崩溃。当超过流量的时候给用户一个友好的提示，让用户知道当前自己没法访问，过会再来访问。</p>
-<p>针对与秒杀系统这个场景来说的话，我们可以在秒杀开始之前进行预约，这样就可以大致的估计到会有多少流量了。其次为了防止有人使用脚本来进行秒杀，我们可以使用用户输入验证码的方式来进行流量的限制以及脚本的判断。</p>
-<p>目前进行限流的中间件也有很多，比较推荐的是阿里巴巴的sentinel。简单而且功能强大，经历过双十一的考验。我们可以对接口进行流量的限制，也可以针对用户或者ip地址来进行流量的限制来保证每个用户只能秒杀一个商品。使用sentinel的话就都可以实现了。</p>
-<h5 id="2、流量削峰"><a href="#2、流量削峰" class="headerlink" title="2、流量削峰"></a>2、流量削峰</h5><p><strong>注意：如果我们使用了限流的话，那么我们就没有比较使用流量削峰了。如果我们没有使用限流的话，那么流量削峰就很有必要了。</strong></p>
-<p>如果流量很大我们没办法立刻消费，同时我们不希望我们的系统崩溃的话，我们可以使用消息队列来进行流量削峰。简单来说就是将大量的请求直接丢到消息队列中，然后后台服务器慢慢的去消费，这样我们的服务器就不会因为大流量发生崩溃。</p>
-<h5 id="3、降级"><a href="#3、降级" class="headerlink" title="3、降级"></a>3、降级</h5><p>降级是从系统的优先级角度来说的，比如当流量剧增的时候，系统会将一些无关紧要的功能进行关闭或者降级来优先保证优先级高的功能的可用性。</p>
-<h5 id="4、熔断"><a href="#4、熔断" class="headerlink" title="4、熔断"></a>4、熔断</h5><p>熔断和降级是有点类似的，所以很多人经常弄混。 降级主要是应对系统本身的故障，而熔断主要是应对系统依赖的外部系统或者第三方系统的故障。</p>
-<p>举个例子：秒杀服务在服务A上，同时服务A上有其他的功能，比如商品管理。当秒杀的大流量来到服务A上的时候，服务A提高商品管理功能就会很慢很差，这个时候使用熔断让其他的服务不来服务A上访问服务A的商品管理功能，这样就可以有效的防止其他服务因为服务A的商品管理性能慢而拖垮其他的系统。</p>
-<h5 id="5、一致性"><a href="#5、一致性" class="headerlink" title="5、一致性"></a>5、一致性</h5><p>设计秒杀系统的时候一个关键的问题就是防止超卖问题的出现。</p>
-<p>现在常用的扣减库存的方案有两个：一是下单的时候就扣减库存，没有付款也扣减库存。二是付款之后才扣减库存。</p>
-<p>如果下单就扣减库存的话，当一定时间内用户没有付款的话我们不应该去扣减库存的。如果我们系统使用的redis来作为缓存的话，我们可以使用lua脚本来保证下单和扣减库存的原子性。</p>
-<h5 id="6、幂等性"><a href="#6、幂等性" class="headerlink" title="6、幂等性"></a>6、幂等性</h5><p>何为幂等性：用户多次发起同一个相同的请求的时候等到的结果和发出单个请求是一样的。</p>
-<p>在设计秒杀系统的时候我们也要考虑幂等性。比如当用户多次下单我们只会让他购买一个秒杀商品，不可能是下单几次买几个。另外比如支付按钮，用户可能因为网络问题多次重复点击了同一个付款按钮，我们不能多次扣费，只会扣一次费用。</p>
-<p>幂等性的实现可以使用分布式锁来实现，也可以使用token+redis的方案来实现。</p>
-<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>在上面的这个秒杀系统的设计方案中，只是大体提供了一个方向，但是里面的很多具体细节没有详细展开，举个简单的例子，使用消息队列来进行流量削峰的时候的消费顺序，消息堆积问题等如何解决，保证一致性的时候如何解决，以及幂等性如何具体实现因为篇幅问题都没有详细展开，后序可能会在后面的文章中详细说明。</p>
-<p>END….</p>
+        <h2 id="站内消息系统设计"><a href="#站内消息系统设计" class="headerlink" title="站内消息系统设计"></a>站内消息系统设计</h2><h4 id="什么是站内消息系统？"><a href="#什么是站内消息系统？" class="headerlink" title="什么是站内消息系统？"></a>什么是站内消息系统？</h4><p>简单的来说就是负责一个系统内的消息通知的系统就是站内消息系统。</p>
+<p>举个例子：b站的系统消息，关注、私信、点赞都是站内消息</p>
+<p><img src="https://gitee.com/there-is-xiao-zheng-at-home/blog-img/raw/master/%E7%AB%99%E5%86%85%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/b%E7%AB%99%E6%A0%B7%E4%BE%8B.png" alt="b站样例"></p>
+<h4 id="设计方案"><a href="#设计方案" class="headerlink" title="设计方案"></a>设计方案</h4><p>对于一个系统来说，站内的消息是需要进行分类的，我感觉可以按照b站的这个来分类，分为 <strong>系统通知</strong>、<strong>由用户行为导致的回复、@、点赞通知</strong> </p>
+<h5 id="系统通知消息"><a href="#系统通知消息" class="headerlink" title="系统通知消息"></a>系统通知消息</h5><p>对于系统通知消息来说，一般是由后台系统发出的消息，但是也是需要进行分类的，按照消息的发放范围可以分为给单个用户发送通知、给全体用户发送通知、给VIP用户发送通知等等，具体的由你的系统业务来确定。</p>
+<p>首先先来看一下数据表的设计，然后再说后序的设计</p>
+<p>两张表，t_system_notice表：用来记录后台系统发出的消息 </p>
+<p>​			   t_user_notice表：用来记录用户接收的消息。 如果用户想要看到消息的内容需要到这个表中进行消息的拉取</p>
+<p>t_system_notice</p>
+<table>
+<thead>
+<tr>
+<th align="center">字段名</th>
+<th align="center">类型</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">system_message_id</td>
+<td align="center">Big Integer</td>
+<td align="center">系统消息id</td>
+</tr>
+<tr>
+<td align="center">title</td>
+<td align="center">varchar</td>
+<td align="center">标题</td>
+</tr>
+<tr>
+<td align="center">content</td>
+<td align="center">varchar</td>
+<td align="center">内容</td>
+</tr>
+<tr>
+<td align="center">status</td>
+<td align="center">int</td>
+<td align="center">是否被拉取过（0：未拉取 1：已拉取）</td>
+</tr>
+<tr>
+<td align="center">type</td>
+<td align="center">varchar</td>
+<td align="center">发送范围(single:单个用户,all:全体用户,VIP:全体会员)</td>
+</tr>
+<tr>
+<td align="center">receiver_id</td>
+<td align="center">varchar</td>
+<td align="center">接收者id(如果type&#x3D;single的话为对应用户的id,如果是all或者VIP的话用0来代表)</td>
+</tr>
+<tr>
+<td align="center">publish_time</td>
+<td align="center">timestamp</td>
+<td align="center">发布时间</td>
+</tr>
+<tr>
+<td align="center">publisher_id</td>
+<td align="center">varchar</td>
+<td align="center">发送的管理员的id</td>
+</tr>
+</tbody></table>
+<p>t_user_notice</p>
+<table>
+<thead>
+<tr>
+<th align="center">字段名</th>
+<th align="center">类型</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">user_message_id</td>
+<td align="center">Big Integer</td>
+<td align="center">消息id</td>
+</tr>
+<tr>
+<td align="center">status</td>
+<td align="center">int</td>
+<td align="center">读取状态(0:未读 1：已读)</td>
+</tr>
+<tr>
+<td align="center">system_message_id</td>
+<td align="center">Big Integer</td>
+<td align="center">系统消息id</td>
+</tr>
+<tr>
+<td align="center">receive_id</td>
+<td align="center">varchar</td>
+<td align="center">接收者id</td>
+</tr>
+<tr>
+<td align="center">pull_time</td>
+<td align="center">timestamp</td>
+<td align="center">读取时间</td>
+</tr>
+</tbody></table>
+<p>针对不同的发送范围，我设计不同的通知方案：</p>
+<p>​	对于单个用户的范围的这种消息，可以直接写入t_user_notice这个表中，但是还要去通知它有消息的到来</p>
+<p>​	对于VIP这种特定人群的范围：这种用户数相对于整个系统的用户来说，肯定占了小部分，所以可以使用mq，先将消息放到mq中，然后慢慢的给t_user_notice这个表中插入。如果VIP用户数不大的话，也可以直接插入t_user_notice表中，不需要经过mq,这就要由你系统的实际情况来确定了。同时我们可以使用一个session池来缓存当前在线的VIP用户，当插入完数据之后，通知他有新消息了。没有登录的就不需要立刻通知了，等上线后会去拉取所以上线后会看到的。</p>
+<p>​	对于全体人员的范围：这种范围的用户数是非常大的，所以有下面的几种方案：</p>
+<p>​	1、使用多线程+批量插入的方案来分批的处理数据，分批来插入到t_user_notice中</p>
+<p>​	2、如果对实时性要求不高，为了降低并发插入的压力，可以放到mq中慢慢消费慢慢去插入</p>
+<p>​	3、如果感觉对一个表t_user_notice的插入压力太大的话，我们可以进行表的拆分，按照用户的user_id来进行hash操作，哈希值相同的放到一个表中，所以需要用到了分库分表的技术,分库分表之后的t_user_notice中只需要存放一条这个消息就可以了,因为这个表中的用户接收到的是同一条消息,所以去这个表中读取就可以了。同时可以使用session池来缓存当前在线的用户，插入之后通知在线的用户有新消息了。</p>
+<h5 id="由用户行为导致的点赞、评论、-消息"><a href="#由用户行为导致的点赞、评论、-消息" class="headerlink" title="由用户行为导致的点赞、评论、@消息"></a>由用户行为导致的点赞、评论、@消息</h5><p>由用户行为导致的点赞、评论、@类型的消息都是点对点的消息，所以一般都是直接插入表中</p>
+<p>表的设计</p>
+<p>t_event_message</p>
+<table>
+<thead>
+<tr>
+<th align="center">字段名</th>
+<th align="center">类型</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">event_message_id</td>
+<td align="center">Big Integer</td>
+<td align="center">消息id</td>
+</tr>
+<tr>
+<td align="center">source_type</td>
+<td align="center">Int</td>
+<td align="center">消息来源的类型(0:文章 1：评论)</td>
+</tr>
+<tr>
+<td align="center">source_id</td>
+<td align="center">BigInteger</td>
+<td align="center">消息来源id,如文章id,评论id</td>
+</tr>
+<tr>
+<td align="center">source_content</td>
+<td align="center">varchar</td>
+<td align="center">回复或者点赞或者@的源消息的内容</td>
+</tr>
+<tr>
+<td align="center">url</td>
+<td align="center">varchar</td>
+<td align="center">来源消息的url地址</td>
+</tr>
+<tr>
+<td align="center">publisher_id</td>
+<td align="center">BigInteger</td>
+<td align="center">消息发送者id</td>
+</tr>
+<tr>
+<td align="center">receiver_id</td>
+<td align="center">BigInteger</td>
+<td align="center">消息接收者id</td>
+</tr>
+<tr>
+<td align="center">status</td>
+<td align="center">Int</td>
+<td align="center">是否读取(0:未读 1:已读)</td>
+</tr>
+<tr>
+<td align="center">publish_time</td>
+<td align="center">timestamp</td>
+<td align="center">消息发布时间</td>
+</tr>
+</tbody></table>
+<p>消息聚合，消息聚合一般就是当一条评论有多个点赞，或者多个回复、或者多个@的时候，一般会通过分组统计一个数量，给用户一个共xx个点赞这种通知，需要做的就是进行分组通知数量。</p>
+<p>​	当然可以根据你们项目的实际需要对上面的表进行拆分，分成点赞表、评论表、@表等</p>
+<h5 id="私信"><a href="#私信" class="headerlink" title="私信"></a>私信</h5><p>私信的设计就是点对点的消息，其实就是一个聊天系统，所以就涉及到聊天系统的设计了，这里就不做具体的阐述了，可以使用netty来做一个聊天室的系统嵌入进入。实时性要好。</p>
+<h5 id="开关的设置"><a href="#开关的设置" class="headerlink" title="开关的设置"></a>开关的设置</h5><p><img src="https://gitee.com/there-is-xiao-zheng-at-home/blog-img/raw/master/%E7%AB%99%E5%86%85%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/b%E7%AB%99%E6%B6%88%E6%81%AF%E8%AE%BE%E7%BD%AE.png" alt="b站消息设置"></p>
+<p>我们也可以按照b站这种设计来对消息的提醒设置一些开关，可以由用户来确定接收什么类型的消息通知。</p>
+<p>表的设计</p>
+<p>t_message_notice_switch</p>
+<table>
+<thead>
+<tr>
+<th align="center">字段名</th>
+<th align="center">类型</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">user_id</td>
+<td align="center">BigInteger</td>
+<td align="center">用户id</td>
+</tr>
+<tr>
+<td align="center">like_message</td>
+<td align="center">Boolean</td>
+<td align="center">是否接收点赞消息</td>
+</tr>
+<tr>
+<td align="center">reply_message</td>
+<td align="center">Boolean</td>
+<td align="center">是否接收评论消息</td>
+</tr>
+<tr>
+<td align="center">at_message</td>
+<td align="center">Boolean</td>
+<td align="center">是否接收@消息</td>
+</tr>
+<tr>
+<td align="center">stranger_message</td>
+<td align="center">Boolean</td>
+<td align="center">是否接收陌生人消息</td>
+</tr>
+<tr>
+<td align="center">private_messages_intercept</td>
+<td align="center">Boolean</td>
+<td align="center">是否开启私信智能拦截</td>
+</tr>
+<tr>
+<td align="center">message_notice</td>
+<td align="center">Boolean</td>
+<td align="center">是否开启消息提醒</td>
+</tr>
+</tbody></table>
+<p><strong>上述仅是我个人的思想，有不对或者不符合你们项目业务的地方请指出</strong></p>
+<p>END…..</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>

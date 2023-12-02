@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>秒杀系统的设计方案 | 我的博客</title>
-  <meta name="keywords" content=" 秒杀系统的设计方案 ">
-  <meta name="description" content="秒杀系统的设计方案 | 我的博客">
+  <title>Feed流/信息流 系统设计方案 | 我的博客</title>
+  <meta name="keywords" content=" Feed流/信息流 系统设计方案 ">
+  <meta name="description" content="Feed流/信息流 系统设计方案 | 我的博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="RPC系统设计RPC系统设计架构图 设计方案首先一个RPC系统的设计主要由下面的几部分组成：  注册中心  ​	服务提供者将自己的ip地址和端口号注册到注册中心，服务消费者从注册中心中进行订阅然后得到对应的服务的地址来进行调用  服务提供者  ​	服务的提供者  服务消费者  ​	服务的消费者  序列化&#x2F;反序列化  ​	在网络传输中只能传输二进制对象，不能直接传输Java中的Java B">
 <meta property="og:type" content="article">
@@ -461,9 +461,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-秒杀系统的设计方案" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-feed流（信息流）系统设计方案" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">秒杀系统的设计方案</h1>
+        <h1 class="article-title">Feed流/信息流 系统设计方案</h1>
     
     <div class="article-meta">
         
@@ -481,14 +481,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color5">秒杀系统的设计方案</a>
+            <a class="color2">Feed流/信息流 系统设计方案</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-11-26 13:57:52'>2023-11-26 13:41</time>
+            发布时间 : <time class="date" title='最后更新: 2023-12-02 16:51:23'>2023-12-01 16:44</time>
         
     </div>
     <div class="article-meta">
@@ -510,7 +510,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88"><span class="toc-text">秒杀系统的设计方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E7%83%AD%E7%82%B9%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-text">1、热点数据处理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E7%83%AD%E7%82%B9%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86"><span class="toc-text">静态热点数据处理</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E7%83%AD%E7%82%B9%E6%95%B0%E6%8D%AE%E7%9A%84%E5%A4%84%E7%90%86%EF%BC%9A"><span class="toc-text">动态热点数据的处理：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E9%AB%98%E5%8F%AF%E7%94%A8"><span class="toc-text">2、高可用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E9%AB%98%E5%B9%B6%E5%8F%91"><span class="toc-text">3、高并发</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E9%99%90%E6%B5%81"><span class="toc-text">1、限流</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E6%B5%81%E9%87%8F%E5%89%8A%E5%B3%B0"><span class="toc-text">2、流量削峰</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E9%99%8D%E7%BA%A7"><span class="toc-text">3、降级</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4%E3%80%81%E7%86%94%E6%96%AD"><span class="toc-text">4、熔断</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5%E3%80%81%E4%B8%80%E8%87%B4%E6%80%A7"><span class="toc-text">5、一致性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6%E3%80%81%E5%B9%82%E7%AD%89%E6%80%A7"><span class="toc-text">6、幂等性</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-text">总结：</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Feed%E6%B5%81-%E4%BF%A1%E6%81%AF%E6%B5%81-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88"><span class="toc-text">Feed流&#x2F;信息流 系统设计方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BD%95%E4%B8%BAfeed%E6%B5%81-%E4%BF%A1%E6%81%AF%E6%B5%81"><span class="toc-text">何为feed流&#x2F;信息流?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%EF%BC%9F"><span class="toc-text">如何设计？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Feed%E6%B5%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">Feed流系统的注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E5%AE%9E%E6%97%B6%E6%80%A7"><span class="toc-text">1、实时性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E9%AB%98%E5%B9%B6%E5%8F%91"><span class="toc-text">2、高并发</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E9%AB%98%E6%80%A7%E8%83%BD"><span class="toc-text">3、高性能</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1Feed%E6%B5%81%E6%95%B0%E6%8D%AE%E7%9A%84%E5%87%A0%E7%A7%8D%E6%8E%A8%E9%80%81%E6%A8%A1%E5%BC%8F"><span class="toc-text">设计Feed流数据的几种推送模式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1%E3%80%81%E6%8E%A8%E6%A8%A1%E5%BC%8F-%E5%86%99%E6%89%A9%E6%95%A3"><span class="toc-text">1、推模式(写扩散)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2%E3%80%81%E6%8B%89%E6%A8%A1%E5%BC%8F-%E8%AF%BB%E6%89%A9%E6%95%A3"><span class="toc-text">2、拉模式(读扩散)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3%E3%80%81%E6%8E%A8%E6%8B%89%E7%BB%93%E5%90%88%E7%9A%84%E6%A8%A1%E5%BC%8F-%E8%AF%BB%E5%86%99%E6%89%A9%E6%95%A3"><span class="toc-text">3、推拉结合的模式(读写扩散)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%B0%8F%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="toc-text">三种模式的小总结：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%87%8F"><span class="toc-text">数据量</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%B1%82%E9%9D%A2"><span class="toc-text">数据层面</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#feed%E6%B5%81%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%85%83%E6%95%B0%E6%8D%AE"><span class="toc-text">feed流系统的元数据</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%88%A0%E9%99%A4feed%E5%86%85%E5%AE%B9"><span class="toc-text">删除feed内容</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0feed%E5%86%85%E5%AE%B9"><span class="toc-text">更新feed内容</span></a></li></ol></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -526,34 +526,47 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="秒杀系统的设计方案"><a href="#秒杀系统的设计方案" class="headerlink" title="秒杀系统的设计方案"></a>秒杀系统的设计方案</h2><p>对于一个秒杀系统来说，最关键的肯定是大并发量了，秒杀系统就是典型的互联网三高系统的一个应用。三高分别是：高并发、高性能、高可用。</p>
-<h4 id="1、热点数据处理"><a href="#1、热点数据处理" class="headerlink" title="1、热点数据处理"></a>1、热点数据处理</h4><h5 id="静态热点数据处理"><a href="#静态热点数据处理" class="headerlink" title="静态热点数据处理"></a>静态热点数据处理</h5><p>对于一个秒杀系统来说肯定会产生热点数据。比如要进行秒杀的商品就会变成一个热点数据，在短时间内会有非常非常大的流量。</p>
-<p>所以我想第一步就是先处理热点数据。对于秒杀系统来说，这个热点数据我们程序员其实是知道的，因为我们要秒杀什么商品是确定的，所以我们可以提前进行准备来防止我们的系统崩溃掉。对于秒杀商品需要的静态资源，比如html、css、js来说我们可以使用静态热点数据处理法来处理。比较成熟的技术就是使用CDN来处理静态资源的热点数据。我们可以使用稳定的云厂商的服务比如阿里云、腾讯云、华为云、青云等</p>
-<h5 id="动态热点数据的处理："><a href="#动态热点数据的处理：" class="headerlink" title="动态热点数据的处理："></a>动态热点数据的处理：</h5><p>有很多场景下其实都是动态热点数据，意思是：我们没办法提前知道哪些数据是热点数据。对于这类热点数据我们称之为动态热点数据。对于动态热点数据的处理方法，我们需要有热点数据监测的能力。来实时监测系统中的数据，来及时的发现哪些数据是热点数据。</p>
-<p>热点数据监测工具可以使用京东开源的hotkey中间件，如果我们使用了redis作为缓存的话，我们可以使用redis的热key监测技术来监测redis中的热key来及时发现热点数据。</p>
-<p>我们一般会将热点数据放到缓存中去，但是如果仅仅使用类似于redis这样的缓存中间件来缓存热点数据的话redis集群很可能会被干掉了。所以我们会将并发量非常非常大的数据考虑放到jvm内存中去，因为在jvm内存中是最快的，没有网络开销。</p>
-<p>redis的热key探测方案：</p>
-<p>1、修改redis的sdk，记录每次请求，定时将收集到的请求上报，然后做一个统一的处理。</p>
-<p>2、<strong>代理层上报</strong>：如果所有的请求都走代理层的话，可以在代理层进行请求的收集然后进行上报，然后再由外部的其他系统进行解析分析和计算</p>
-<p>3、redis定时扫描：redis本身有命令可以来扫描整个keyspace的热key,这个命令是redis-cli –hotkeys，但是这个命令耗时太久，耗时和redis中缓存的数量成正比。所以性能比较差。</p>
-<p>4、Redis节点抓包分析：在可能存在热key的节点上进行抓包，然后进行分析、计算。但是有一个问题，对于一个热key的redis节点来说，请求量是非常大的，如果我们还进行抓包的话，可能更加影响性能，会使情况更加糟糕。</p>
-<h4 id="2、高可用"><a href="#2、高可用" class="headerlink" title="2、高可用"></a>2、高可用</h4><p>保证高可用的话，我们一般就是使用集群来进行处理。比如对于缓存来说，如果我们使用的是redis的话，我们可以使用redis的sentinel哨兵模式来搭建redis集群来提高系统的可用性，让我们的系统实现高可用。</p>
-<p> 为什么不使用redis的一主多从技术呢？因为如果一个master宕机之后，一个slave变成了master的话，我们需要手动的去修改客户端访问master的地址，另外还要让其他的slave去复制这个新的master的数据。这都需要人工手动干预，而使用sentinel哨兵模式的话，可以自动实现，不需要手动人工干预。</p>
-<h4 id="3、高并发"><a href="#3、高并发" class="headerlink" title="3、高并发"></a>3、高并发</h4><h5 id="1、限流"><a href="#1、限流" class="headerlink" title="1、限流"></a>1、限流</h5><p>解决高并发的一个偷懒的办法就是来进行限流了，我们来规定最大流量，让流量在系统可以接收的范围之内，这样我们的系统就不会崩溃。当超过流量的时候给用户一个友好的提示，让用户知道当前自己没法访问，过会再来访问。</p>
-<p>针对与秒杀系统这个场景来说的话，我们可以在秒杀开始之前进行预约，这样就可以大致的估计到会有多少流量了。其次为了防止有人使用脚本来进行秒杀，我们可以使用用户输入验证码的方式来进行流量的限制以及脚本的判断。</p>
-<p>目前进行限流的中间件也有很多，比较推荐的是阿里巴巴的sentinel。简单而且功能强大，经历过双十一的考验。我们可以对接口进行流量的限制，也可以针对用户或者ip地址来进行流量的限制来保证每个用户只能秒杀一个商品。使用sentinel的话就都可以实现了。</p>
-<h5 id="2、流量削峰"><a href="#2、流量削峰" class="headerlink" title="2、流量削峰"></a>2、流量削峰</h5><p><strong>注意：如果我们使用了限流的话，那么我们就没有比较使用流量削峰了。如果我们没有使用限流的话，那么流量削峰就很有必要了。</strong></p>
-<p>如果流量很大我们没办法立刻消费，同时我们不希望我们的系统崩溃的话，我们可以使用消息队列来进行流量削峰。简单来说就是将大量的请求直接丢到消息队列中，然后后台服务器慢慢的去消费，这样我们的服务器就不会因为大流量发生崩溃。</p>
-<h5 id="3、降级"><a href="#3、降级" class="headerlink" title="3、降级"></a>3、降级</h5><p>降级是从系统的优先级角度来说的，比如当流量剧增的时候，系统会将一些无关紧要的功能进行关闭或者降级来优先保证优先级高的功能的可用性。</p>
-<h5 id="4、熔断"><a href="#4、熔断" class="headerlink" title="4、熔断"></a>4、熔断</h5><p>熔断和降级是有点类似的，所以很多人经常弄混。 降级主要是应对系统本身的故障，而熔断主要是应对系统依赖的外部系统或者第三方系统的故障。</p>
-<p>举个例子：秒杀服务在服务A上，同时服务A上有其他的功能，比如商品管理。当秒杀的大流量来到服务A上的时候，服务A提高商品管理功能就会很慢很差，这个时候使用熔断让其他的服务不来服务A上访问服务A的商品管理功能，这样就可以有效的防止其他服务因为服务A的商品管理性能慢而拖垮其他的系统。</p>
-<h5 id="5、一致性"><a href="#5、一致性" class="headerlink" title="5、一致性"></a>5、一致性</h5><p>设计秒杀系统的时候一个关键的问题就是防止超卖问题的出现。</p>
-<p>现在常用的扣减库存的方案有两个：一是下单的时候就扣减库存，没有付款也扣减库存。二是付款之后才扣减库存。</p>
-<p>如果下单就扣减库存的话，当一定时间内用户没有付款的话我们不应该去扣减库存的。如果我们系统使用的redis来作为缓存的话，我们可以使用lua脚本来保证下单和扣减库存的原子性。</p>
-<h5 id="6、幂等性"><a href="#6、幂等性" class="headerlink" title="6、幂等性"></a>6、幂等性</h5><p>何为幂等性：用户多次发起同一个相同的请求的时候等到的结果和发出单个请求是一样的。</p>
-<p>在设计秒杀系统的时候我们也要考虑幂等性。比如当用户多次下单我们只会让他购买一个秒杀商品，不可能是下单几次买几个。另外比如支付按钮，用户可能因为网络问题多次重复点击了同一个付款按钮，我们不能多次扣费，只会扣一次费用。</p>
-<p>幂等性的实现可以使用分布式锁来实现，也可以使用token+redis的方案来实现。</p>
-<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>在上面的这个秒杀系统的设计方案中，只是大体提供了一个方向，但是里面的很多具体细节没有详细展开，举个简单的例子，使用消息队列来进行流量削峰的时候的消费顺序，消息堆积问题等如何解决，保证一致性的时候如何解决，以及幂等性如何具体实现因为篇幅问题都没有详细展开，后序可能会在后面的文章中详细说明。</p>
+        <h2 id="Feed流-信息流-系统设计方案"><a href="#Feed流-信息流-系统设计方案" class="headerlink" title="Feed流&#x2F;信息流 系统设计方案"></a>Feed流&#x2F;信息流 系统设计方案</h2><h4 id="何为feed流-信息流"><a href="#何为feed流-信息流" class="headerlink" title="何为feed流&#x2F;信息流?"></a>何为feed流&#x2F;信息流?</h4><p>简单的来说，能够实时&#x2F;智能化推荐信息的数据流就是Feed流&#x2F;信息流。常见的比如：微信朋友圈、微博关注、头条首页等</p>
+<h4 id="如何设计？"><a href="#如何设计？" class="headerlink" title="如何设计？"></a>如何设计？</h4><p>设计Feed流&#x2F;信息流有两个角度，第一个是实时性，就是简单的根据时间的先后顺序来进行推荐，这种方案比较简单实现。</p>
+<p>另一个角度就是智能化推荐，可以根据用户的喜好来进行推荐用户喜欢的内容，这也是信息时代“信息茧房”的由来。你只能看到你喜欢的东西，看不到其他的很多东西。这种方案一般是需要结合推荐系统来实现的。推荐效果的好坏直接由推荐算法来直接决定。</p>
+<p>但是我感觉基于时间+智能化推荐的组合是比较好的，既能看到自己喜欢的内容，又不会太容易产生“信息茧房”。</p>
+<p><strong>基于时间（TimeLine）的Feed流</strong></p>
+<p>常见的比如微信朋友圈，微博关注列表的动态，是根据时间来进行推荐的。我们优先看到的是最新的内容。这种比较容易实现。</p>
+<h4 id="Feed流系统的注意事项"><a href="#Feed流系统的注意事项" class="headerlink" title="Feed流系统的注意事项"></a>Feed流系统的注意事项</h4><h5 id="1、实时性"><a href="#1、实时性" class="headerlink" title="1、实时性"></a>1、实时性</h5><p>当我们关注的人发布了内容之后我们应该实时的看到最新的内容，所以对于实时性的要求很高。</p>
+<h5 id="2、高并发"><a href="#2、高并发" class="headerlink" title="2、高并发"></a>2、高并发</h5><p>举个简单的例子，对于微博来说，所有用户打开微博之后进去先看到的就是推荐的页面，也就是feed流推送过来的数据，所以这个并发量是很大的。</p>
+<h5 id="3、高性能"><a href="#3、高性能" class="headerlink" title="3、高性能"></a>3、高性能</h5><p>还是用微博来说，对于推荐的页面的显示，微博可能需要聚合非常多的信息，所以性能的高低直接决定了用户的体验感，所以对于性能有很高的要求。</p>
+<h4 id="设计Feed流数据的几种推送模式"><a href="#设计Feed流数据的几种推送模式" class="headerlink" title="设计Feed流数据的几种推送模式"></a>设计Feed流数据的几种推送模式</h4><h5 id="1、推模式-写扩散"><a href="#1、推模式-写扩散" class="headerlink" title="1、推模式(写扩散)"></a>1、推模式(写扩散)</h5><p>以微博为例，当一个up发表了一个动态之后，会将这个动态同时发送给所有关注了他的用户。所以这种模式叫做推模式。</p>
+<p><img src="https://gitee.com/there-is-xiao-zheng-at-home/blog-img/raw/master/feed%E6%B5%81%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B5%81%EF%BC%89%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/Feed%E6%B5%81%E7%9A%84%E6%8E%A8%E6%A8%A1%E5%BC%8F.png" alt="推模式"></p>
+<p><strong>问题</strong>：这种模式有一个很大的问题，如果当前发布动态的up是一个大V，拥有几千万的粉丝的话，如果他发布一条动态给所有关注他的用户推的话，那么会产生大量的插入语句，而且性能也是很差的。存储成本太高。所以不适合粉丝数很多的大V。</p>
+<h5 id="2、拉模式-读扩散"><a href="#2、拉模式-读扩散" class="headerlink" title="2、拉模式(读扩散)"></a>2、拉模式(读扩散)</h5><p>以微博为例，一个用户登录之后会去主动拉取他关注的up的最新的动态。</p>
+<p><img src="https://gitee.com/there-is-xiao-zheng-at-home/blog-img/raw/master/feed%E6%B5%81%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B5%81%EF%BC%89%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/Feed%E6%B5%81%E7%9A%84%E6%8B%89%E6%A8%A1%E5%BC%8F.png" alt="拉模式"></p>
+<p><strong>问题</strong>：拉模式依然有问题，如果一个用户关注的人非常多，那么在他登录的时候，feed流会去拉取非常多的数据然后再进行数据的聚合然后再给他显示出来，这个过程可能耗时比较多，所以性能就会差点，给用户的体验感就不是很好了。查询和聚合的成本太高，而且拉模式比推模式的实时性更差。</p>
+<p>​	而且拉模式还有一个很致命的问题，很容易是我们系统的故障点的就是：对于一个大V来说，它需要记录每个用户读到的数据的位置，这个数据量是很大的，也是很容易出问题的地方。每个关注者读取这个大V的数据的位置可能都不一样。</p>
+<h5 id="3、推拉结合的模式-读写扩散"><a href="#3、推拉结合的模式-读写扩散" class="headerlink" title="3、推拉结合的模式(读写扩散)"></a>3、推拉结合的模式(读写扩散)</h5><p>以微博为例，推拉结合的模式的核心是针对大V和不活跃用户来进行处理的。首先指定两个指标，一个来指定多少用户数是大V，另一个用来指定登录频率多少为活跃用户。</p>
+<p>当大V在发布动态的时候，会将动态使用推的模式发送给他的粉丝中的活跃用户，对于不活跃的用户使用拉的模式来获得他关注的up的动态。</p>
+<p><img src="https://gitee.com/there-is-xiao-zheng-at-home/blog-img/raw/master/feed%E6%B5%81%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B5%81%EF%BC%89%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/Feed%E6%B5%81%E6%8E%A8%E6%8B%89%E6%A8%A1%E5%BC%8F.png" alt="Feed流推拉模式"></p>
+<h5 id="三种模式的小总结："><a href="#三种模式的小总结：" class="headerlink" title="三种模式的小总结："></a>三种模式的小总结：</h5><p>1、如果我们的系统中用户之间是双向关系，也就是双向关注的话，不会存在大V，所以推荐使用推模式（写扩散）</p>
+<p>2、如果我们的系统中是单向关系，并且用户数小于1000万的话，虽然有大V的存在，但是数据量不大，所以也是推荐使用推模式</p>
+<p>3、如果我们的系统用户之间是双向关系，并且用户数大于1000万的话，有数据量大的大V存在了，所以推荐使用推拉结合的模式。</p>
+<p>4、永远不要只用拉模式</p>
+<p>5、对于初创企业可以使用推模式快速开发上线，然后在产品的迭代过程中随着用户数的不断增加当用户数超过1000万的时候再慢慢由推模式演进到推拉结合模式。</p>
+<h5 id="数据量"><a href="#数据量" class="headerlink" title="数据量"></a>数据量</h5><p>因为对于微博这种社交平台来说，大V的帖子下面可能评论数非常多，所以对于这种大数据量的数据，可以使用mysql+redis的方案，也可以使用mongodb来存储帖子的信息。</p>
+<p>如果使用的是MySQL的话，为了提高性能我们可以使用读写分离，分库分表的技术来提高性能和存储量。</p>
+<p>另外一个方案是可以使用PingCAP开发的TiDB（分布式数据库）来存储。具备水平扩缩容、金融级高可用的特点。</p>
+<p>推模式、拉模式、推拉结合模式都是针对基于时间的Feed流系统来说的。</p>
+<h5 id="数据层面"><a href="#数据层面" class="headerlink" title="数据层面"></a>数据层面</h5><p>从数据层面来看，feed流系统的数据可以简单的分为三类，分别是：1、发布者的数据 2、用户关注关系 3、接收者的数据</p>
+<p>针对这三类数据我们可以有如下的表的定义：</p>
+<p>1、存储表：存储发布者的数据，永久保存</p>
+<p>2、关系表：存储用户之间的关注关系，永久保存</p>
+<p>3、同步库：存储接收者按照时间接受到的数据，一般只需要保留一段时间的就可以，不需要永久保留。</p>
+<h5 id="feed流系统的元数据"><a href="#feed流系统的元数据" class="headerlink" title="feed流系统的元数据"></a>feed流系统的元数据</h5><p>1、用户详情和列表</p>
+<p>2、关注或者好友关系</p>
+<p>3、推送session池</p>
+<p>前两个很好理解，重点说一下第三个推送session池。</p>
+<p>举个例子：一个用户发布消息之后要推送给很多用户，那么一个用户是如何知道自己有新消息到来的呢？定时去查询？如果是定时查询的话，那么读请求压力和客户端的数量成正比，如果平常设备的登陆率是20%，某天有一个热点消息到来，大量的设备都登陆了，达到了90%以上，那么这么多的查询请求会产生查询风暴，会将系统干崩溃。</p>
+<p>我们session池就是解决这个问题的：session池中可以存储当前登录的设备session信息，当一个用户发布了一个消息之后，不仅将数据保存到存储库和同步库中，然后去session池中通知关注了这个用户的<strong>此时在线的用户</strong>，告诉它你有新消息了，去接收一下。</p>
+<h5 id="删除feed内容"><a href="#删除feed内容" class="headerlink" title="删除feed内容"></a>删除feed内容</h5><p>对于大V来说发布一条消息后会进行写扩散，那么删除的时候是不是也要写扩散呢？如果删除也是写扩散的话没法满足删除之后立刻删除，对于一些比如艺人有不良行为然后快速删除这个用户的信息来说是没办法立刻实现的。那么应该如何实现呢？在设计同步库的时候，我们这个同步库只保存user_id和消息id,不存放消息内容，我们会根据这个消息id去发布者的存储库中查询内容，所以我们可以直接将发布者的存储库中的消息删除&#x2F;逻辑删除就可以了，这样同步库通过消息id是看不到消息的内容了。</p>
+<h5 id="更新feed内容"><a href="#更新feed内容" class="headerlink" title="更新feed内容"></a>更新feed内容</h5><p>更新内容和删除feed内容一样，只需要更新发布者的存储库中的消息内容就可以了。同步库中是不存放消息的内容的。只存放消息的id</p>
 <p>END….</p>
 
       
