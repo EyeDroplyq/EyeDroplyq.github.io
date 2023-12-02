@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Netty | 我的博客</title>
+  <meta name="keywords" content=" Netty ">
+  <meta name="description" content="Netty | 我的博客">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="CDN概念简单的来说，CDN就是将静态资源分发到不同的地方，然后实现就近访问，来提高对静态资源的访问速度，还能减轻系统的服务器压力和带宽压力。 CDN推荐使用云厂商的服务，因为CDN需要在各地都要有CDN服务器，才能达到就近访问的效果。注意CDN只能针对静态资源来进行加速，原理是通过负载均衡算法将请求分发到就近的CDN服务器上，然后来提高对静态资源的访问速度。 其中CDN使用的负载均衡算法一般是基">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CDN">
+<meta property="og:url" content="http://eyedroplyq.github.io/2023/12/01/CDN/index.html">
+<meta property="og:site_name" content="我的博客">
+<meta property="og:description" content="CDN概念简单的来说，CDN就是将静态资源分发到不同的地方，然后实现就近访问，来提高对静态资源的访问速度，还能减轻系统的服务器压力和带宽压力。 CDN推荐使用云厂商的服务，因为CDN需要在各地都要有CDN服务器，才能达到就近访问的效果。注意CDN只能针对静态资源来进行加速，原理是通过负载均衡算法将请求分发到就近的CDN服务器上，然后来提高对静态资源的访问速度。 其中CDN使用的负载均衡算法一般是基">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-01T08:44:48.000Z">
+<meta property="article:modified_time" content="2023-12-02T12:35:07.868Z">
+<meta property="article:author" content="Carl-LYQ">
+<meta property="article:tag" content="CDN">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>Carl-LYQ</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/eyedroplyq"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1525761478@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1525761478&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(35)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="系统设计">
+            
+            系统设计
+            <small>(10)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="中间件">
+            
+            中间件
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="系统设计常识与原则和系统性能优化原则">
+            
+            系统设计常识与原则和系统性能优化原则
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="网络通信">
+            
+            网络通信
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="后端">
+            
+            后端
+            <small>(7)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="容器化云平台">
+            
+            容器化云平台
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="面试题">
+            
+            面试题
+            <small>(9)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">关于</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="35">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="/null">小琦</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>乘车系统</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>短链系统的设计方案</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分布式事务解决方案</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>负载均衡常见算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工作中JUC的使用和学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>计算机网络知识沉淀总结</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>秒杀系统的设计方案</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>配置中心的设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>如何对敏感数据进行模糊查询</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式汇总</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>统计网站UV设计方案</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>稳定的数据迁移方案</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>系统设计常识与原则和系统性能优化原则</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>线上故障分析</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>站内消息系统设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CDN</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ConcurrentHashMap 为何不能插入 null？HashMap 为何可以？</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>DockerFile总结</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>drools规则引擎</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Feed流/信息流 系统设计方案</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>go方法中的值接收者和方法接收者</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Go语言深度理解</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java并发面试知识</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java数据类型面试题</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Kafka</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MVCC多版本并发控制</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mysql大数据量插入性能优化方案</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL的主从延迟问题</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL行锁、间隙锁、表锁的简单规则</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Netty</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>redis作为分布式锁中常见的问题</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RPC框架</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RPC系统设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Spring 如何解决循环依赖？</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SQL优化手段</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a id="top" class="全部文章 系统设计 "
+           href="/2017/01/23/%E4%B9%98%E8%BD%A6%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1/"
+           data-tag="乘车系统"
+           data-author="" >
+            <span class="post-title" title="乘车系统的设计">乘车系统的设计</span>
+            <span class="post-date" title="2017-01-23 11:41:48">2017/01/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 面试题 "
+           href="/2023/12/01/CDN/"
+           data-tag="CDN"
+           data-author="" >
+            <span class="post-title" title="CDN">CDN</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 面试题 "
+           href="/2023/12/01/ConcurrentHashMap%20%E4%B8%BA%E4%BD%95%E4%B8%8D%E8%83%BD%E6%8F%92%E5%85%A5%20null%EF%BC%9FHashMap%20%E4%B8%BA%E4%BD%95%E5%8F%AF%E4%BB%A5/"
+           data-tag="ConcurrentHashMap 为何不能插入 null？HashMap 为何可以？"
+           data-author="" >
+            <span class="post-title" title="ConcurrentHashMap 为何不能插入 null？HashMap 为何可以？">ConcurrentHashMap 为何不能插入 null？HashMap 为何可以？</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 容器化云平台 "
+           href="/2023/12/01/DockerFile/"
+           data-tag="DockerFile总结"
+           data-author="" >
+            <span class="post-title" title="DockerFile总结">DockerFile总结</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 面试题 "
+           href="/2023/12/01/Java%E5%B9%B6%E5%8F%91/"
+           data-tag="Java并发面试知识"
+           data-author="" >
+            <span class="post-title" title="Java并发面试知识">Java并发面试知识</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 面试题 "
+           href="/2023/12/01/Java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E9%9D%A2%E8%AF%95%E9%A2%98/"
+           data-tag="Java数据类型面试题"
+           data-author="" >
+            <span class="post-title" title="Java数据类型面试题">Java数据类型面试题</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 "
+           href="/2023/12/01/Kafka/"
+           data-tag="Kafka"
+           data-author="" >
+            <span class="post-title" title="Kafka">Kafka</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 面试题 "
+           href="/2023/12/01/MySQL%E4%B8%BB%E4%BB%8E%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98/"
+           data-tag="MySQL的主从延迟问题"
+           data-author="" >
+            <span class="post-title" title="MySQL的主从延迟问题">MySQL的主从延迟问题</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 面试题 "
+           href="/2023/12/01/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84MVCC%E6%9C%BA%E5%88%B6/"
+           data-tag="MVCC多版本并发控制"
+           data-author="" >
+            <span class="post-title" title="MVCC多版本并发控制">MVCC多版本并发控制</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 面试题 "
+           href="/2023/12/01/MySQL%E8%A1%8C%E9%94%81%E3%80%81%E9%97%B4%E9%9A%99%E9%94%81%E3%80%81%E8%A1%A8%E9%94%81%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%84%E5%88%99/"
+           data-tag="MySQL行锁、间隙锁、表锁的简单规则"
+           data-author="" >
+            <span class="post-title" title="MySQL行锁、间隙锁、表锁的简单规则">MySQL行锁、间隙锁、表锁的简单规则</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 网络通信 "
+           href="/2023/12/01/RPC%E6%A1%86%E6%9E%B6/"
+           data-tag="RPC框架"
+           data-author="" >
+            <span class="post-title" title="RPC框架">RPC框架</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 网络通信 "
+           href="/2023/12/01/Netty/"
+           data-tag="Netty"
+           data-author="" >
+            <span class="post-title" title="Netty">Netty</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计 "
+           href="/2023/12/01/RPC%E6%A1%86%E6%9E%B6%E7%9A%84%E8%AE%BE%E8%AE%A1/"
+           data-tag="RPC系统设计"
+           data-author="" >
+            <span class="post-title" title="RPC系统设计">RPC系统设计</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 数据库 "
+           href="/2023/12/01/SQL%E4%BC%98%E5%8C%96%E6%89%8B%E6%AE%B5/"
+           data-tag="SQL优化手段"
+           data-author="" >
+            <span class="post-title" title="SQL优化手段">SQL优化手段</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 面试题 "
+           href="/2023/12/01/Spring%20%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/"
+           data-tag="Spring 如何解决循环依赖？"
+           data-author="" >
+            <span class="post-title" title="Spring 如何解决循环依赖？">Spring 如何解决循环依赖？</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 后端 "
+           href="/2023/12/01/drools%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E/"
+           data-tag="drools规则引擎"
+           data-author="" >
+            <span class="post-title" title="drools规则引擎">drools规则引擎</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计 "
+           href="/2023/12/01/feed%E6%B5%81%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B5%81%EF%BC%89%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/"
+           data-tag="Feed流/信息流 系统设计方案"
+           data-author="" >
+            <span class="post-title" title="Feed流/信息流 系统设计方案">Feed流/信息流 系统设计方案</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 后端 "
+           href="/2023/12/01/go%E6%96%B9%E6%B3%95%E4%B8%AD%E7%9A%84%E5%80%BC%E6%8E%A5%E6%94%B6%E8%80%85%E5%92%8C%E6%96%B9%E6%B3%95%E6%8E%A5%E6%94%B6%E8%80%85/"
+           data-tag="go方法中的值接收者和方法接收者"
+           data-author="" >
+            <span class="post-title" title="go方法中的值接收者和方法接收者">go方法中的值接收者和方法接收者</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 后端 "
+           href="/2023/12/01/go%E8%AF%AD%E8%A8%80%E6%B7%B1%E5%BA%A6%E7%90%86%E8%A7%A3/"
+           data-tag="Go语言深度理解"
+           data-author="" >
+            <span class="post-title" title="Go语言深度理解">Go语言深度理解</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 数据库 "
+           href="/2023/12/01/mysql%E9%AB%98%E6%80%A7%E8%83%BD%E6%89%B9%E9%87%8F%E6%8F%92%E5%85%A5%E4%BC%98%E5%8C%96/"
+           data-tag="mysql大数据量插入性能优化方案"
+           data-author="" >
+            <span class="post-title" title="mysql大数据量插入性能优化方案">mysql大数据量插入性能优化方案</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 面试题 "
+           href="/2023/12/01/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E9%97%AE%E9%A2%98/"
+           data-tag="redis作为分布式锁中常见的问题"
+           data-author="" >
+            <span class="post-title" title="redis作为分布式锁中常见的问题">redis作为分布式锁中常见的问题</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计 "
+           href="/2023/12/01/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"
+           data-tag="分布式事务解决方案"
+           data-author="" >
+            <span class="post-title" title="分布式事务解决方案">分布式事务解决方案</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 数据库 "
+           href="/2023/12/01/%E5%A6%82%E4%BD%95%E5%AF%B9%E6%95%8F%E6%84%9F%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2/"
+           data-tag="如何对敏感数据进行模糊查询"
+           data-author="" >
+            <span class="post-title" title="如何对敏感数据进行模糊查询">如何对敏感数据进行模糊查询</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 后端 "
+           href="/2023/12/01/%E5%B7%A5%E4%BD%9C%E4%B8%ADJUC%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E5%AD%A6%E4%B9%A0/"
+           data-tag="工作中JUC的使用和学习"
+           data-author="" >
+            <span class="post-title" title="工作中JUC的使用和学习">工作中JUC的使用和学习</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计 "
+           href="/2023/12/01/%E7%AB%99%E5%86%85%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/"
+           data-tag="站内消息系统设计"
+           data-author="" >
+            <span class="post-title" title="站内消息系统设计">站内消息系统设计</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计常识与原则和系统性能优化原则 "
+           href="/2023/12/01/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E5%B8%B8%E8%AF%86%E4%B8%8E%E5%8E%9F%E5%88%99%E5%92%8C%E7%B3%BB%E7%BB%9F%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%8E%9F%E5%88%99/"
+           data-tag="系统设计常识与原则和系统性能优化原则"
+           data-author="" >
+            <span class="post-title" title="系统设计常识与原则和系统性能优化原则">系统设计常识与原则和系统性能优化原则</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 后端 "
+           href="/2023/12/01/%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E5%88%86%E6%9E%90/"
+           data-tag="线上故障分析"
+           data-author="" >
+            <span class="post-title" title="线上故障分析">线上故障分析</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计 "
+           href="/2023/12/01/%E7%BB%9F%E8%AE%A1%E7%BD%91%E7%AB%99UV%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/"
+           data-tag="统计网站UV设计方案"
+           data-author="" >
+            <span class="post-title" title="统计网站UV设计方案">统计网站UV设计方案</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 网络通信 "
+           href="/2023/12/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%B2%89%E6%B7%80%E6%80%BB%E7%BB%93/"
+           data-tag="计算机网络知识沉淀总结"
+           data-author="" >
+            <span class="post-title" title="计算机网络知识沉淀总结">计算机网络知识沉淀总结</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 后端 "
+           href="/2023/12/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B1%87%E6%80%BB/"
+           data-tag="设计模式汇总"
+           data-author="" >
+            <span class="post-title" title="设计模式汇总">设计模式汇总</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 后端 "
+           href="/2023/12/01/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"
+           data-tag="负载均衡常见算法"
+           data-author="" >
+            <span class="post-title" title="负载均衡常见算法">负载均衡常见算法</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计 "
+           href="/2023/12/01/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E7%9A%84%E8%AE%BE%E8%AE%A1/"
+           data-tag="配置中心的设计"
+           data-author="" >
+            <span class="post-title" title="配置中心的设计">配置中心的设计</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计 "
+           href="/2023/11/26/%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/"
+           data-tag="秒杀系统的设计方案"
+           data-author="" >
+            <span class="post-title" title="秒杀系统的设计方案">秒杀系统的设计方案</span>
+            <span class="post-date" title="2023-11-26 13:41:48">2023/11/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计 "
+           href="/2023/11/26/%E7%9F%AD%E9%93%BE%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/"
+           data-tag="短链系统的设计方案"
+           data-author="" >
+            <span class="post-title" title="短链系统的设计方案">短链系统的设计方案</span>
+            <span class="post-date" title="2023-11-26 11:41:48">2023/11/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计 "
+           href="/2023/11/26/%E7%A8%B3%E5%AE%9A%E7%9A%84%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB%E6%96%B9%E6%A1%88/"
+           data-tag="稳定的数据迁移方案"
+           data-author="" >
+            <span class="post-title" title="稳定的数据迁移方案">稳定的数据迁移方案</span>
+            <span class="post-date" title="2023-11-26 11:41:48">2023/11/26</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Netty" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Netty</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="网络通信">网络通信</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">Netty</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2023-12-02 20:25:41'>2023-12-01 16:44</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Netty"><span class="toc-text">Netty</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81Netty%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">一、Netty是什么？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Netty%E4%B8%AD%E7%9A%84%E5%AD%97%E8%8A%82%E5%AE%B9%E5%99%A8ByteBuf"><span class="toc-text">二、Netty中的字节容器ByteBuf</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81Reactor%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="toc-text">三、Reactor线程模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81TCP%E7%B2%98%E5%8C%85-%E6%8B%86%E5%8C%85"><span class="toc-text">四、TCP粘包&#x2F;拆包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94%E3%80%81IO%E6%A8%A1%E5%9E%8B"><span class="toc-text">五、IO模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AD%E3%80%81Netty%E4%B8%89%E4%B8%AA%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6%E5%85%B3%E7%B3%BB"><span class="toc-text">六、Netty三个核心组件关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="toc-text">七、线程模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%AB%E3%80%81Netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="toc-text">八、Netty线程模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B9%9D%E3%80%81Netty%E6%BA%90%E7%A0%81%E7%9A%84%E9%83%A8%E5%88%86%E5%88%86%E6%9E%90"><span class="toc-text">九、Netty源码的部分分析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%81%E3%80%81Netty%E7%9A%84%E5%BC%82%E6%AD%A5%E6%A8%A1%E5%9E%8B"><span class="toc-text">十、Netty的异步模型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81Pipeline%E4%B8%8EChannelPipeline%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-text">十一、Pipeline与ChannelPipeline的关系</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81Netty%E7%9A%84%E7%BC%96%E8%A7%A3%E7%A0%81"><span class="toc-text">十二、Netty的编解码</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Netty"><a href="#Netty" class="headerlink" title="Netty"></a>Netty</h2><h4 id="一、Netty是什么？"><a href="#一、Netty是什么？" class="headerlink" title="一、Netty是什么？"></a>一、Netty是什么？</h4><ol>
+<li>Netty是一个基于NIO的client-server框架，可以快速进行网络编程的开发</li>
+<li>Netty极大的简化了TCP和UDP套接字服务器等网络编程，并且性能以及安全性等很多方面甚至要更好</li>
+<li>支持多种协议，比如FTP、SMTP、HTTP以及各种二进制和基于文本的传统协议</li>
+</ol>
+<h4 id="二、Netty中的字节容器ByteBuf"><a href="#二、Netty中的字节容器ByteBuf" class="headerlink" title="二、Netty中的字节容器ByteBuf"></a>二、Netty中的字节容器ByteBuf</h4><p>在网络传输中都是以字节流的形式来进行传输的，但是Netty没有使用Java NIO中自带的ByteBuff字节容器，而是使用了自己写的ByteBuf，ByteBuf是Netty提供的一个字节容器，底层其实就是一个字节数组。</p>
+<p>Netty不使用Java NIO的ByteBuff字节容器的原因主要是：</p>
+<ol>
+<li>Netty中的ByteBuf比Java NIO的ByteBuffer更加灵活和易用，可以理解为对ByteBuffer的封装，提供了更多方便使用的API</li>
+<li>可扩展性：ByteBuf可以根据数据传输的大小自动进行扩缩容</li>
+<li>零拷贝优化：在数据传输的时候，ByteBuf可以避免将数据从内存中的某个地方复制到内存中的另一个地方</li>
+<li>ByteBuf支持内存池，可以通过内存池对内存进行管理，降低内存分配和回收的开销，减少了垃圾回收的频率</li>
+<li>ByteBuf提供了更加直观和安全的内存释放方式，开发者无需手动调用方法去释放</li>
+</ol>
+<p><strong>总而言之，使用NIO的ByteBuffer太复杂和麻烦，而使用Netty的ByteBuf更加简单</strong></p>
+<h4 id="三、Reactor线程模型"><a href="#三、Reactor线程模型" class="headerlink" title="三、Reactor线程模型"></a>三、Reactor线程模型</h4><p>大部分的网络框架都是基于Reactor模型的，Reactor模型主要有三种</p>
+<ul>
+<li>单线程Reactor</li>
+</ul>
+<p>​	所有的IO操作都由一个线程来处理</p>
+<ul>
+<li>多线程Reactor</li>
+</ul>
+<p>​	一个线程负责接收客户端的请求，一组NIO线程负责处理实际的IO操作</p>
+<ul>
+<li>主从多线程Reactor</li>
+</ul>
+<p>​	一组NIO线程符合接收客户端的请求，一组NIO线程负责处理实际的IO操作</p>
+<h4 id="四、TCP粘包-拆包"><a href="#四、TCP粘包-拆包" class="headerlink" title="四、TCP粘包&#x2F;拆包"></a>四、TCP粘包&#x2F;拆包</h4><p>TCP粘包&#x2F;拆包就是指多个字符串被“粘”在了一起，或者一个字符串被“拆”开的问题。原因是服务器在读取数据的时候，一次性读取的字节数是不确定的。</p>
+<p>如何解决？</p>
+<p>根本上就是解决服务器读取数据的长度就可以了。</p>
+<ol>
+<li><p>使用Netty自带的解码器</p>
+</li>
+<li><p>自定义序列化编码&#x2F;解码器</p>
+<p>主要是定义好接收的长度就可以了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>: 自定义编码器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: 小琦</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@createDate</span>: 2023-11-26 20:23</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span>: 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyProtocolEncoder</span> <span class="keyword">extends</span> <span class="title class_">MessageToByteEncoder</span>&lt;ProtocolMessage&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">encode</span><span class="params">(ChannelHandlerContext ctx, ProtocolMessage msg, ByteBuf out)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;编码器被调用~~&quot;</span>);</span><br><span class="line">        out.writeInt(msg.getLength());</span><br><span class="line">        out.writeBytes(msg.getContent());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@description</span>:解码器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span>: 小琦</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@createDate</span>: 2023-11-26 20:22</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@version</span>: 1.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyProtocolDecoder</span> <span class="keyword">extends</span> <span class="title class_">ReplayingDecoder</span>&lt;ProtocolMessage&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">decode</span><span class="params">(ChannelHandlerContext ctx, ByteBuf in, List&lt;Object&gt; out)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;解码器被调用~~&quot;</span>);</span><br><span class="line">        <span class="type">int</span> <span class="variable">length</span> <span class="operator">=</span> in.readInt();</span><br><span class="line">        <span class="type">byte</span>[] content = <span class="keyword">new</span> <span class="title class_">byte</span>[length];</span><br><span class="line">        in.readBytes(content);</span><br><span class="line">        <span class="type">ProtocolMessage</span> <span class="variable">protocolMessage</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ProtocolMessage</span>();</span><br><span class="line">        protocolMessage.setLength(length);</span><br><span class="line">        protocolMessage.setContent(content);</span><br><span class="line">        out.add(protocolMessage);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+<h4 id="五、IO模型"><a href="#五、IO模型" class="headerlink" title="五、IO模型"></a>五、IO模型</h4><p>三种常见得IO模型是BIO、NIO、AIO，至于这三种模型得概念就不做详细的介绍了，下面就主要说一下这三种模型的使用场景</p>
+<ul>
+<li><p>BIO</p>
+<p>对于BIO模型，主要适用于连接数量少并且固定的架构，服务器资源比较高的场景</p>
+</li>
+<li><p>NIO</p>
+<p>对于NIO模型，主要适用于连接数量多并且连接时间短（短连接）的场景，比如聊天服务器，弹幕系统等</p>
+</li>
+<li><p>AIO</p>
+<p>对于AIO模型，主要适用于连接数量多并且连接时间长（重连接）的场景，比如相册服务器等</p>
+</li>
+</ul>
+<h4 id="六、Netty三个核心组件关系"><a href="#六、Netty三个核心组件关系" class="headerlink" title="六、Netty三个核心组件关系"></a>六、Netty三个核心组件关系</h4><p>Netty中的三个核心组件分别是Selector、Channel、Buffer，它们三个之间的关系如图所示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/EyeDroplyq/myblog-img@master/Nio%E4%B8%89%E4%B8%AA%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6%E5%85%B3%E7%B3%BB%E5%9B%BE.png" alt="Nio三个核心组件关系图.png"></p>
+<p>其中，一个线程对应一个Selector(选择器)，而Selector对应多个Channel，可以根据不同的事件选择不同的Channel,而每个Channel又对应一个Buffer,每个客户端通过和Buffer进行交互，而Buffer相当于一个内存块，底层其实是数组，相比于BIO的输入输出流来说，Buffer和客户端之间的数据交互是双向的，因为Buffer可以切换读写模式。而Buffer也实现了NIO的同步非阻塞的模式。</p>
+<ul>
+<li><p>Selector</p>
+<p>Selector是多路选择器，一个Thread对应一个Selector，然后多个channel通过事件注册到这个selector上。selector会根据不同的事件去找到对应的channel。</p>
+</li>
+<li><p>Channel</p>
+<p>Channel是一个接口，有很多的子接口以及是实现类，在NIO中Channel是双向的。Channel与Buffer来进行通信，主要是将数据写入到Buffer中以及从Buffer中读取数据。其中比较重要的一个Channel就是FileChannel了，我也写了一些简单的demo。到时候会一起发出来。</p>
+</li>
+<li><p>Buffer</p>
+<p>Buffer是顶级的抽象父类，下面有多个子类，结构图如果所示</p>
+<p><img src="https://cdn.jsdelivr.net/gh/EyeDroplyq/myblog-img@master/Buffer%E7%9A%84%E7%BB%93%E6%9E%84%E5%9B%BE.png" alt="Buffer的结构图.png"></p>
+<p>Buffer的底层实际上是使用了各个类型对应的数组，Buffer类中规定了所有的Buffer中都应该存在的四个关键属性，分别为</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Invariants: mark &lt;= position &lt;= limit &lt;= capacity</span></span><br><span class="line"><span class="keyword">private</span> <span class="type">int</span> <span class="variable">mark</span> <span class="operator">=</span> -<span class="number">1</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="type">int</span> <span class="variable">position</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">private</span> <span class="type">int</span> limit;</span><br><span class="line"><span class="keyword">private</span> <span class="type">int</span> capacity;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>mark:标记，一般不动</li>
+<li>position:当前指针在数组中的位置，position是会一直变化的</li>
+<li>limit:缓冲区的极限，当指针到达极限位置的时候就不能继续访问了，limit也是会变化的，当调用flip方法来转变读写模式的时候limit会发生变化</li>
+<li>capacity:数组的容量，不可变</li>
+</ul>
+<p>其中比较关键的一个方法是flip(),看一下源码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> Buffer <span class="title function_">flip</span><span class="params">()</span> &#123;</span><br><span class="line">    limit = position;</span><br><span class="line">    position = <span class="number">0</span>;</span><br><span class="line">    mark = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>flip()方法是用来进行读写模式切换的，会先将position的位置给limit,然后让position变为0，然后继续执行。</p>
+<p>而且NIO是支持一个channel对应一个buffer数组的，如果通信的数据太多的话，我们使用一个buffer肯定性能很差，因此NIO支持使用buffer数组来通信</p>
+</li>
+</ul>
+<h4 id="七、线程模型"><a href="#七、线程模型" class="headerlink" title="七、线程模型"></a>七、线程模型</h4><p>常见的线程模型有：传统的IO服务模型，Reactor模型；其中Reactor模型又分为了下面的几种类型：</p>
+<ol>
+<li>单Reactor单线程</li>
+<li>单Reactor多线程</li>
+<li>主从Reactor多线程</li>
+</ol>
+<p>传统的IO服务模型的弊端：</p>
+<ul>
+<li>在传统的IO服务模型中，每个client客户端来连接的时候都会启动一个线程来服务这个客户端，所以不适合高并发的场景，如果客户端比较多的话那么就会启动大量的线程</li>
+<li>采用阻塞IO模式来获取输入的数据，当线程没有数据可以读的时候会阻塞在这里会造成资源的浪费</li>
+</ul>
+<p>Reactor模型</p>
+<p>先看一下整个Reactor模型的架构图</p>
+<p><img src="https://cdn.jsdelivr.net/gh/EyeDroplyq/myblog-img@master/Reactor%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B%E6%9E%B6%E6%9E%84%E5%9B%BE.png" alt="Reactor线程模型架构图.png"></p>
+<p>其中中间的ServiceHandler其实就相当于Reactor,Reactor采用IO复用监听事件，当接收到IO请求的时候，进行事件派送，派送给具体的处理线程（或者进程）去进行业务处理。而为了提高性能，多个处理线程又是从线程池中取出来的，使用线程池的池化技术来提高系统的性能。</p>
+<ul>
+<li><p>单Reactor单线程模型</p>
+<p>在单Reactor单线程模型中，说的通俗易懂点就是只有一个Reactor，进行业务处理的Handler只有一个线程。这种Reactor模型的优缺点也是通俗易懂的</p>
+<p>优点：模型简单，没有多线程，没有线程之间的竞争</p>
+<p>缺点：单线程所以只会使用一个cpu所以对于多核系统来说会造成资源的浪费，不能处理高并发问题；如果因为一个handler发生阻塞那么后续的操作会一直阻塞得不到执行。</p>
+<p>适用场景：比较适合于连接少，并且业务处理非常迅速的场景。</p>
+</li>
+<li><p>单Reactor多线程模型</p>
+<p>模型图如下所示，<img src="https://cdn.jsdelivr.net/gh/EyeDroplyq/myblog-img@master/%E5%8D%95Reactor%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B%E5%9B%BE.png" alt="单Reactor多线程模型图.png"></p>
+<p>对于上面的这个模型图进行具体的流程说明，只有一个Reactor来接收客户端的请求。如果Reactor接收到的是连接请求的话，会交给Acceptor进行accept操作。如果不是连接请求的话，会交给Handler来处理，注意：Handler不进行具体的业务处理，而只是将请求发送给Worker线程池中的某个具体的Worker线程去执行具体的业务处理。当业务处理完成之后再通过Handler将结果返回给客户端。</p>
+<p>优点：业务处理是多线程的，所以可以充分的利用多核系统的资源</p>
+<p>缺点：对于客户端来说依然是只有一个Reactor来接收客户端的请求和进行转发，所以单线程的Reactor的建立连接和处理请求转发会成为系统的瓶颈。</p>
+</li>
+<li><p>主从Reactor多线程模型</p>
+<p> 主从Reactor多线程模型图如图所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/EyeDroplyq/myblog-img@master/%E4%B8%BB%E4%BB%8EReactor%E5%A4%9A%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B%E5%9B%BE.png" alt="主从Reactor多线程模型图.png"></p>
+</li>
+</ul>
+<p>根据这个模型图来说一下基本的流程逻辑：</p>
+<p>​	客户端发送请求后，Reactor主线程只负责处理连接请求，然后交给Acceptor来进行accept处理</p>
+<p>​	如果不是建立连接的请求，Reactor主线程就将请求发送给Reactor子线程（注意：一个Reactor主线程可以对应多个Reactor子线程）,然后Reactor子线程根据请求的类型发给不同的Handler，Handler在将请求发送给Worker线程池中的Worker线程去执行具体的业务处理，Worker线程执行完具体的业务处理后将请求返回给Handler，然后Handler发送给客户端</p>
+<p>​	优点：</p>
+<pre><code>1. 响应快
+2. 可以最大程度的避免复杂的多线程以及同步问题，避免了多线程的切换花销
+3. 扩展性好，可以通过灵活的增加Reactor的个数来充分利用CPU资源
+4. 复用性好
+</code></pre>
+<p>Netty的线程模型是基于主从Reactor多线程模型优化而成的。</p>
+<h4 id="八、Netty线程模型"><a href="#八、Netty线程模型" class="headerlink" title="八、Netty线程模型"></a>八、Netty线程模型</h4><p>Netty线程模型图如下所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/EyeDroplyq/myblog-img@master/Netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B%E5%9B%BE.png" alt="Netty线程模型图"></p>
+<p>下面基于上面的线程模型图来讲解一下工作原理：</p>
+<ol>
+<li>Netty的线程模型中有一个Boss Group和Worker Group.其中Boss Group负责接收客户端的连接请求；Worker Group负责处理网络读写请求</li>
+<li>Boss Group和Worker Group其实都是NioEventLoopGroup，里面包含一组NioEventLoop</li>
+<li>每个NioEventLoop表示一个不断循环执行任务的线程，每个NioEventLoop里面都有selector和TaskQueue,其中Seletor负责监听其对应的socket的网络通讯</li>
+<li>Boss Group中的NioEventLoop的循环处理事件流程如下：<ol>
+<li>只负责处理accept请求，所以监听accept请求</li>
+<li>处理accept事件，获得对应的NioSocketChannel,并将NioSocketChannel注册到Worker Group中的一个NioEventLoop中的Selector中。</li>
+<li>处理任务队列中的任务，即执行runAllTasks</li>
+</ol>
+</li>
+<li>Worker Group中的NioEventLoop的循环处理事件流程如下：<ol>
+<li>Worker Group中的NioEventLoop负责处理网络读写操作，所以监听read&#x2F;write请求</li>
+<li>处理对应的读写操作，在对应的NioSocketChannel中处理</li>
+<li>执行任务队列中的任务，即执行runAllTasks</li>
+</ol>
+</li>
+<li>其中Worker Group的NioEventLoop在循环处理的时候，具体执行read&#x2F;write操作的时候需要依靠Pipeline，Pipeline中包含了channel,而且Pipeline中有许多的Handler，可以来进行不同的处理。pipeline和channel是互相包含的关系。</li>
+<li>每个客户端独享一个pipeline以及pipeline中的handler,每来一个新的客户端就会使用一个新的pipeline和pipeline中的handler</li>
+</ol>
+<h4 id="九、Netty源码的部分分析"><a href="#九、Netty源码的部分分析" class="headerlink" title="九、Netty源码的部分分析"></a>九、Netty源码的部分分析</h4><ul>
+<li>在Netty中，我们创建的NioEventLoopGroup中有多少个子NioEventLoop呢，这个根据源码发现可以在使用构造函数创建NioEventLoopGroup的时候指定，如果不指定的话就使用默认的，默认为操作系统CPU核数*2，源码如下</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">protected</span> <span class="title function_">MultithreadEventLoopGroup</span><span class="params">(<span class="type">int</span> nThreads, Executor executor, Object... args)</span> &#123;</span><br><span class="line">       <span class="built_in">super</span>(nThreads == <span class="number">0</span> ? DEFAULT_EVENT_LOOP_THREADS : nThreads, executor, args);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> DEFAULT_EVENT_LOOP_THREADS;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">static</span> &#123;</span><br><span class="line">       DEFAULT_EVENT_LOOP_THREADS = Math.max(<span class="number">1</span>, SystemPropertyUtil.getInt(</span><br><span class="line">               <span class="string">&quot;io.netty.eventLoopThreads&quot;</span>, NettyRuntime.availableProcessors() * <span class="number">2</span>));</span><br><span class="line"></span><br><span class="line">       <span class="keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">           logger.debug(<span class="string">&quot;-Dio.netty.eventLoopThreads: &#123;&#125;&quot;</span>, DEFAULT_EVENT_LOOP_THREADS);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中我们在使用构造函数创建NioEventLoopGroup的时候如果没有指定子线程NioEventLoop的个数的话，默认nThreads&#x3D;0，然后会进入到上面的两个方法中，其中在静态代码块中对DEFAULT_EVENT_LOOP_THREADS进行初始化，使用了NettyRuntime.availableProcessors()来得到操作系统的CPU核数</p>
+<ul>
+<li>在Netty中channel和pipeline是相互包含并且对应的关系，channnel中包含对应的pipeline，pipeline中包含对应的channel,并且pipeline中可以有多个handler</li>
+</ul>
+<h4 id="十、Netty的异步模型"><a href="#十、Netty的异步模型" class="headerlink" title="十、Netty的异步模型"></a>十、Netty的异步模型</h4><p>Netty中使用了很多的异步模型，其中我们pipeline中的Handler如果进行的处理花费了很多的时间，为了防止Netty发生阻塞，我们可以将Handler中的耗时的业务处理过程放到NioEventLoop对应的TaskQueue中异步执行。</p>
+<p>比如Netty服务器的绑定监听端口的方法就是一个异步任务，我们可以给异步的ChannelFuture添加一个监听器，通过监听器可以得到异步任务的执行结果，根据不同的执行结果进行不同的业务处理。Netty客户端的连接任务也是一个异步任务，同理我们也可以给它添加一个监听器。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//配置监听端口，Netty服务器绑定端口的操作是一个异步的操作</span></span><br><span class="line">         <span class="type">ChannelFuture</span> <span class="variable">cf</span> <span class="operator">=</span> serverBootstrap.bind(<span class="number">6668</span>).sync();</span><br><span class="line">         <span class="comment">//给ChannelFuture添加监听器</span></span><br><span class="line">         cf.addListener(<span class="keyword">new</span> <span class="title class_">ChannelFutureListener</span>() &#123;</span><br><span class="line">             <span class="meta">@Override</span></span><br><span class="line">             <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">operationComplete</span><span class="params">(ChannelFuture future)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">                 <span class="keyword">if</span> (future.isSuccess()) &#123;</span><br><span class="line">                     <span class="comment">//如果异步任务处理完成了</span></span><br><span class="line">                     System.out.println(<span class="string">&quot;监听端口6668 成功&quot;</span>);</span><br><span class="line">                 &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                     System.out.println(<span class="string">&quot;监听端口6668 失败&quot;</span>);</span><br><span class="line">                 &#125;</span><br><span class="line">             &#125;</span><br><span class="line">         &#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="十一、Pipeline与ChannelPipeline的关系"><a href="#十一、Pipeline与ChannelPipeline的关系" class="headerlink" title="十一、Pipeline与ChannelPipeline的关系"></a>十一、Pipeline与ChannelPipeline的关系</h4><p>Pipeline与ChannelPipeline的关系如图所示:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/EyeDroplyq/myblog-img@master/pipeline%E4%B8%8EchannelPipeline%E5%85%B3%E7%B3%BB%E5%9B%BE.png" alt="pipeline与ChannelPipeline关系图"></p>
+<p>一个channel中包含一个ChannelPipeline，而ChannelPipeline中又维护了一个由多个ChannelHandlerContext组成的双向链表。ChannelHandlerContext中又包含了ChannelHandler。头节点叫做head,尾节点叫做tail</p>
+<p>数据从head流向tail的过程叫做入站，从tail流向head的过程叫做出站</p>
+<p>ChannelPipelineContext中包含了ChannelHandler,并且也包含了对应的channel和pipeline信息</p>
+<h4 id="十二、Netty的编解码"><a href="#十二、Netty的编解码" class="headerlink" title="十二、Netty的编解码"></a>十二、Netty的编解码</h4><p>编解码器是用来在客户端和服务器之间进行数据传输时对数据进行编码和解码的功能的，对于客户端来说，数据在传输的时候一般要编码为二进制数据然后在网络上进行传输，对于服务器来说，一般是对二进制数据进行解码，解码为业务数据，然后进行相应的处理。</p>
+<p>Netty自带的序列化工具是Java的序列化工具，有一些缺点，比如不能支持跨语言，只能支持Java语言；编码后数据的体积过大；序列化性能很低。</p>
+<p>所以为了避免Netty的编解码器带来的弊端，我们可以使用Google开源的protoBuf来进行编解码,性能更高。</p>
+<p>在解码的过程中，如果能够有元素添加到list中那么解码的handler就会被一直循环调用，每添加到list中之后也会不断的调用后面的ChannelInboundHandler。</p>
+<p>在编码和解码的过程中要注意，我们进行编码和解码的过程要和我们指定的数据类型保持一致，不然不会调用对应的编码和解码的handler,因为它的源码中是先进行判断类型是不是匹配的。</p>
+<p>在数据解码的时候，我们应该先判断ByteBuf中的数据是不是够我们要解码的数据类型对应的字节数，如果不够的我们就不要进行解码了，这样可以保证接收到的数据和我们期望的数据是一致的。</p>
+<p>END……</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1525761478@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2017-2024 Carllyq
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

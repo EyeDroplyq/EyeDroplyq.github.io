@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Kafka | 我的博客</title>
+  <meta name="keywords" content=" Kafka ">
+  <meta name="description" content="Kafka | 我的博客">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="CDN概念简单的来说，CDN就是将静态资源分发到不同的地方，然后实现就近访问，来提高对静态资源的访问速度，还能减轻系统的服务器压力和带宽压力。 CDN推荐使用云厂商的服务，因为CDN需要在各地都要有CDN服务器，才能达到就近访问的效果。注意CDN只能针对静态资源来进行加速，原理是通过负载均衡算法将请求分发到就近的CDN服务器上，然后来提高对静态资源的访问速度。 其中CDN使用的负载均衡算法一般是基">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CDN">
+<meta property="og:url" content="http://eyedroplyq.github.io/2023/12/01/CDN/index.html">
+<meta property="og:site_name" content="我的博客">
+<meta property="og:description" content="CDN概念简单的来说，CDN就是将静态资源分发到不同的地方，然后实现就近访问，来提高对静态资源的访问速度，还能减轻系统的服务器压力和带宽压力。 CDN推荐使用云厂商的服务，因为CDN需要在各地都要有CDN服务器，才能达到就近访问的效果。注意CDN只能针对静态资源来进行加速，原理是通过负载均衡算法将请求分发到就近的CDN服务器上，然后来提高对静态资源的访问速度。 其中CDN使用的负载均衡算法一般是基">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-01T08:44:48.000Z">
+<meta property="article:modified_time" content="2023-12-02T12:35:07.868Z">
+<meta property="article:author" content="Carl-LYQ">
+<meta property="article:tag" content="CDN">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+</head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>Carl-LYQ</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/eyedroplyq"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:1525761478@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1525761478&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(35)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="系统设计">
+            
+            系统设计
+            <small>(10)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="中间件">
+            
+            中间件
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="系统设计常识与原则和系统性能优化原则">
+            
+            系统设计常识与原则和系统性能优化原则
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="网络通信">
+            
+            网络通信
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="后端">
+            
+            后端
+            <small>(7)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数据库">
+            
+            数据库
+            <small>(3)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="容器化云平台">
+            
+            容器化云平台
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="面试题">
+            
+            面试题
+            <small>(9)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">关于</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="35">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="/null">小琦</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>乘车系统</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>短链系统的设计方案</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>分布式事务解决方案</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>负载均衡常见算法</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>工作中JUC的使用和学习</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>计算机网络知识沉淀总结</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>秒杀系统的设计方案</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>配置中心的设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>如何对敏感数据进行模糊查询</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>设计模式汇总</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>统计网站UV设计方案</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>稳定的数据迁移方案</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>系统设计常识与原则和系统性能优化原则</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>线上故障分析</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>站内消息系统设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>CDN</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>ConcurrentHashMap 为何不能插入 null？HashMap 为何可以？</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>DockerFile总结</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>drools规则引擎</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Feed流/信息流 系统设计方案</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>go方法中的值接收者和方法接收者</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Go语言深度理解</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java并发面试知识</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Java数据类型面试题</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Kafka</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MVCC多版本并发控制</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>mysql大数据量插入性能优化方案</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL的主从延迟问题</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>MySQL行锁、间隙锁、表锁的简单规则</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Netty</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>redis作为分布式锁中常见的问题</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RPC框架</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>RPC系统设计</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>Spring 如何解决循环依赖？</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>SQL优化手段</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a id="top" class="全部文章 系统设计 "
+           href="/2017/01/23/%E4%B9%98%E8%BD%A6%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1/"
+           data-tag="乘车系统"
+           data-author="" >
+            <span class="post-title" title="乘车系统的设计">乘车系统的设计</span>
+            <span class="post-date" title="2017-01-23 11:41:48">2017/01/23</span>
+        </a>
+        
+        
+        <a  class="全部文章 面试题 "
+           href="/2023/12/01/CDN/"
+           data-tag="CDN"
+           data-author="" >
+            <span class="post-title" title="CDN">CDN</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 面试题 "
+           href="/2023/12/01/ConcurrentHashMap%20%E4%B8%BA%E4%BD%95%E4%B8%8D%E8%83%BD%E6%8F%92%E5%85%A5%20null%EF%BC%9FHashMap%20%E4%B8%BA%E4%BD%95%E5%8F%AF%E4%BB%A5/"
+           data-tag="ConcurrentHashMap 为何不能插入 null？HashMap 为何可以？"
+           data-author="" >
+            <span class="post-title" title="ConcurrentHashMap 为何不能插入 null？HashMap 为何可以？">ConcurrentHashMap 为何不能插入 null？HashMap 为何可以？</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 容器化云平台 "
+           href="/2023/12/01/DockerFile/"
+           data-tag="DockerFile总结"
+           data-author="" >
+            <span class="post-title" title="DockerFile总结">DockerFile总结</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 面试题 "
+           href="/2023/12/01/Java%E5%B9%B6%E5%8F%91/"
+           data-tag="Java并发面试知识"
+           data-author="" >
+            <span class="post-title" title="Java并发面试知识">Java并发面试知识</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 面试题 "
+           href="/2023/12/01/Java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E9%9D%A2%E8%AF%95%E9%A2%98/"
+           data-tag="Java数据类型面试题"
+           data-author="" >
+            <span class="post-title" title="Java数据类型面试题">Java数据类型面试题</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 中间件 "
+           href="/2023/12/01/Kafka/"
+           data-tag="Kafka"
+           data-author="" >
+            <span class="post-title" title="Kafka">Kafka</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 面试题 "
+           href="/2023/12/01/MySQL%E4%B8%BB%E4%BB%8E%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98/"
+           data-tag="MySQL的主从延迟问题"
+           data-author="" >
+            <span class="post-title" title="MySQL的主从延迟问题">MySQL的主从延迟问题</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 面试题 "
+           href="/2023/12/01/MySQL%E6%95%B0%E6%8D%AE%E5%BA%93%E4%B8%AD%E7%9A%84MVCC%E6%9C%BA%E5%88%B6/"
+           data-tag="MVCC多版本并发控制"
+           data-author="" >
+            <span class="post-title" title="MVCC多版本并发控制">MVCC多版本并发控制</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 面试题 "
+           href="/2023/12/01/MySQL%E8%A1%8C%E9%94%81%E3%80%81%E9%97%B4%E9%9A%99%E9%94%81%E3%80%81%E8%A1%A8%E9%94%81%E7%9A%84%E7%AE%80%E5%8D%95%E8%A7%84%E5%88%99/"
+           data-tag="MySQL行锁、间隙锁、表锁的简单规则"
+           data-author="" >
+            <span class="post-title" title="MySQL行锁、间隙锁、表锁的简单规则">MySQL行锁、间隙锁、表锁的简单规则</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 网络通信 "
+           href="/2023/12/01/RPC%E6%A1%86%E6%9E%B6/"
+           data-tag="RPC框架"
+           data-author="" >
+            <span class="post-title" title="RPC框架">RPC框架</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 网络通信 "
+           href="/2023/12/01/Netty/"
+           data-tag="Netty"
+           data-author="" >
+            <span class="post-title" title="Netty">Netty</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计 "
+           href="/2023/12/01/RPC%E6%A1%86%E6%9E%B6%E7%9A%84%E8%AE%BE%E8%AE%A1/"
+           data-tag="RPC系统设计"
+           data-author="" >
+            <span class="post-title" title="RPC系统设计">RPC系统设计</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 数据库 "
+           href="/2023/12/01/SQL%E4%BC%98%E5%8C%96%E6%89%8B%E6%AE%B5/"
+           data-tag="SQL优化手段"
+           data-author="" >
+            <span class="post-title" title="SQL优化手段">SQL优化手段</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 面试题 "
+           href="/2023/12/01/Spring%20%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/"
+           data-tag="Spring 如何解决循环依赖？"
+           data-author="" >
+            <span class="post-title" title="Spring 如何解决循环依赖？">Spring 如何解决循环依赖？</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 后端 "
+           href="/2023/12/01/drools%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E/"
+           data-tag="drools规则引擎"
+           data-author="" >
+            <span class="post-title" title="drools规则引擎">drools规则引擎</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计 "
+           href="/2023/12/01/feed%E6%B5%81%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B5%81%EF%BC%89%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/"
+           data-tag="Feed流/信息流 系统设计方案"
+           data-author="" >
+            <span class="post-title" title="Feed流/信息流 系统设计方案">Feed流/信息流 系统设计方案</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 后端 "
+           href="/2023/12/01/go%E6%96%B9%E6%B3%95%E4%B8%AD%E7%9A%84%E5%80%BC%E6%8E%A5%E6%94%B6%E8%80%85%E5%92%8C%E6%96%B9%E6%B3%95%E6%8E%A5%E6%94%B6%E8%80%85/"
+           data-tag="go方法中的值接收者和方法接收者"
+           data-author="" >
+            <span class="post-title" title="go方法中的值接收者和方法接收者">go方法中的值接收者和方法接收者</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 后端 "
+           href="/2023/12/01/go%E8%AF%AD%E8%A8%80%E6%B7%B1%E5%BA%A6%E7%90%86%E8%A7%A3/"
+           data-tag="Go语言深度理解"
+           data-author="" >
+            <span class="post-title" title="Go语言深度理解">Go语言深度理解</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 数据库 "
+           href="/2023/12/01/mysql%E9%AB%98%E6%80%A7%E8%83%BD%E6%89%B9%E9%87%8F%E6%8F%92%E5%85%A5%E4%BC%98%E5%8C%96/"
+           data-tag="mysql大数据量插入性能优化方案"
+           data-author="" >
+            <span class="post-title" title="mysql大数据量插入性能优化方案">mysql大数据量插入性能优化方案</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 面试题 "
+           href="/2023/12/01/redis%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E9%97%AE%E9%A2%98/"
+           data-tag="redis作为分布式锁中常见的问题"
+           data-author="" >
+            <span class="post-title" title="redis作为分布式锁中常见的问题">redis作为分布式锁中常见的问题</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计 "
+           href="/2023/12/01/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"
+           data-tag="分布式事务解决方案"
+           data-author="" >
+            <span class="post-title" title="分布式事务解决方案">分布式事务解决方案</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 数据库 "
+           href="/2023/12/01/%E5%A6%82%E4%BD%95%E5%AF%B9%E6%95%8F%E6%84%9F%E6%95%B0%E6%8D%AE%E8%BF%9B%E8%A1%8C%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2/"
+           data-tag="如何对敏感数据进行模糊查询"
+           data-author="" >
+            <span class="post-title" title="如何对敏感数据进行模糊查询">如何对敏感数据进行模糊查询</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 后端 "
+           href="/2023/12/01/%E5%B7%A5%E4%BD%9C%E4%B8%ADJUC%E7%9A%84%E4%BD%BF%E7%94%A8%E5%92%8C%E5%AD%A6%E4%B9%A0/"
+           data-tag="工作中JUC的使用和学习"
+           data-author="" >
+            <span class="post-title" title="工作中JUC的使用和学习">工作中JUC的使用和学习</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计 "
+           href="/2023/12/01/%E7%AB%99%E5%86%85%E6%B6%88%E6%81%AF%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/"
+           data-tag="站内消息系统设计"
+           data-author="" >
+            <span class="post-title" title="站内消息系统设计">站内消息系统设计</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计常识与原则和系统性能优化原则 "
+           href="/2023/12/01/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E5%B8%B8%E8%AF%86%E4%B8%8E%E5%8E%9F%E5%88%99%E5%92%8C%E7%B3%BB%E7%BB%9F%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E5%8E%9F%E5%88%99/"
+           data-tag="系统设计常识与原则和系统性能优化原则"
+           data-author="" >
+            <span class="post-title" title="系统设计常识与原则和系统性能优化原则">系统设计常识与原则和系统性能优化原则</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 后端 "
+           href="/2023/12/01/%E7%BA%BF%E4%B8%8A%E6%95%85%E9%9A%9C%E5%88%86%E6%9E%90/"
+           data-tag="线上故障分析"
+           data-author="" >
+            <span class="post-title" title="线上故障分析">线上故障分析</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计 "
+           href="/2023/12/01/%E7%BB%9F%E8%AE%A1%E7%BD%91%E7%AB%99UV%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/"
+           data-tag="统计网站UV设计方案"
+           data-author="" >
+            <span class="post-title" title="统计网站UV设计方案">统计网站UV设计方案</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 网络通信 "
+           href="/2023/12/01/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%B2%89%E6%B7%80%E6%80%BB%E7%BB%93/"
+           data-tag="计算机网络知识沉淀总结"
+           data-author="" >
+            <span class="post-title" title="计算机网络知识沉淀总结">计算机网络知识沉淀总结</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 后端 "
+           href="/2023/12/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E6%B1%87%E6%80%BB/"
+           data-tag="设计模式汇总"
+           data-author="" >
+            <span class="post-title" title="设计模式汇总">设计模式汇总</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 后端 "
+           href="/2023/12/01/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95/"
+           data-tag="负载均衡常见算法"
+           data-author="" >
+            <span class="post-title" title="负载均衡常见算法">负载均衡常见算法</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计 "
+           href="/2023/12/01/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E7%9A%84%E8%AE%BE%E8%AE%A1/"
+           data-tag="配置中心的设计"
+           data-author="" >
+            <span class="post-title" title="配置中心的设计">配置中心的设计</span>
+            <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计 "
+           href="/2023/11/26/%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/"
+           data-tag="秒杀系统的设计方案"
+           data-author="" >
+            <span class="post-title" title="秒杀系统的设计方案">秒杀系统的设计方案</span>
+            <span class="post-date" title="2023-11-26 13:41:48">2023/11/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计 "
+           href="/2023/11/26/%E7%9F%AD%E9%93%BE%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/"
+           data-tag="短链系统的设计方案"
+           data-author="" >
+            <span class="post-title" title="短链系统的设计方案">短链系统的设计方案</span>
+            <span class="post-date" title="2023-11-26 11:41:48">2023/11/26</span>
+        </a>
+        
+        
+        <a  class="全部文章 系统设计 "
+           href="/2023/11/26/%E7%A8%B3%E5%AE%9A%E7%9A%84%E6%95%B0%E6%8D%AE%E8%BF%81%E7%A7%BB%E6%96%B9%E6%A1%88/"
+           data-tag="稳定的数据迁移方案"
+           data-author="" >
+            <span class="post-title" title="稳定的数据迁移方案">稳定的数据迁移方案</span>
+            <span class="post-date" title="2023-11-26 11:41:48">2023/11/26</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Kafka" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Kafka</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="中间件">中间件</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color1">Kafka</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2023-12-02 20:14:41'>2023-12-01 16:44</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Kafka"><span class="toc-text">Kafka</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E4%B8%AD%E7%9A%84%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5"><span class="toc-text">Kafka中的重要概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E7%9A%84%E5%A4%9A%E5%89%AF%E6%9C%AC%E6%9C%BA%E5%88%B6"><span class="toc-text">Kafka的多副本机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E4%B8%ADbroker%E4%B9%8B%E9%97%B4%E7%9A%84%E5%89%AF%E6%9C%AC%E6%9C%BA%E5%88%B6"><span class="toc-text">Kafka中broker之间的副本机制</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E4%B8%AD%E6%B6%88%E6%81%AF%E7%9A%84%E9%A1%BA%E5%BA%8F%E6%B6%88%E8%B4%B9"><span class="toc-text">Kafka中消息的顺序消费</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E4%B8%AD%E7%9A%84Rebalance"><span class="toc-text">Kafka中的Rebalance</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#AR%E3%80%81ISR%E3%80%81OSR%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">AR、ISR、OSR的概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#leader%E7%9A%84%E9%80%89%E4%B8%BE"><span class="toc-text">leader的选举</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#controller%E9%80%89%E4%B8%BEleader%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-text">controller选举leader的过程</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%BD%A2%E5%BC%8F"><span class="toc-text">Kafka的数据存储形式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%9A%84%E8%AF%BB%E5%8F%96%E8%BF%87%E7%A8%8B"><span class="toc-text">Kafka中数据的读取过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E4%B8%AD%E6%95%B0%E6%8D%AE%E7%9A%84%E5%86%99%E5%85%A5%E8%BF%87%E7%A8%8B"><span class="toc-text">Kafka中数据的写入过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E7%94%9F%E4%BA%A7%E8%80%85%E5%86%99%E5%85%A5%E6%95%B0%E6%8D%AE%E7%9A%84%E7%AD%96%E7%95%A5"><span class="toc-text">Kafka生产者写入数据的策略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E4%B8%AD%E7%9A%84%E6%97%A5%E5%BF%97%E5%88%A0%E9%99%A4"><span class="toc-text">Kafka中的日志删除</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E4%B8%8D%E4%B8%A2%E5%A4%B1%E7%9A%84"><span class="toc-text">Kafka如何保证消息不丢失的</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E7%A7%AF%E5%8E%8B"><span class="toc-text">消息积压</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kafka%E9%85%8D%E9%A2%9D%E9%99%90%E9%80%9F%E6%9C%BA%E5%88%B6"><span class="toc-text">Kafka配额限速机制</span></a></li></ol></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h2><h4 id="Kafka中的重要概念"><a href="#Kafka中的重要概念" class="headerlink" title="Kafka中的重要概念"></a>Kafka中的重要概念</h4><ul>
+<li>producer：生产者，发送消息的一方</li>
+<li>consumer:消费者，消费消息的一方，一个consumer在一同一个topic下只会消费一个partition</li>
+<li>topic:主题，Kafka的消息队列是发布订阅模式，producer将消息发送到topic中，consumer来订阅topic</li>
+<li>broker:代理，可以简单的理解为Kafka实例，多个broker可以组成一个cluster</li>
+<li>partition:分区，可以理解为消息队列中的队列，是属于topic的</li>
+</ul>
+<p><strong>注意：topic可以跨broker，所有partition也可以跨broker</strong></p>
+<h4 id="Kafka的多副本机制"><a href="#Kafka的多副本机制" class="headerlink" title="Kafka的多副本机制"></a>Kafka的多副本机制</h4><p>Kafka中有多副本机制，每个partition中有一个leader和多个follower,其中follower数量可以自己指定。Kafka中消息的读写操作都是直接和leader来进行交互的，而follower负责拉取leader中的数据来进行同步，一旦leader发生故障宕机了，那么会从所有的follower中快速的选择一个来作为leader。</p>
+<p>好处：</p>
+<ol>
+<li>一个topic可以有多个partition，而这些partition又可以分配到不同的broker上，这样可以提供更好的并发性，还可以负载均衡</li>
+<li>提高了容灾能力，leader的宕机不会导致整个partition不可用</li>
+</ol>
+<h4 id="Kafka中broker之间的副本机制"><a href="#Kafka中broker之间的副本机制" class="headerlink" title="Kafka中broker之间的副本机制"></a>Kafka中broker之间的副本机制</h4><p>之前提高到了，一个broker就是一个Kafka实例，多个broker可以组成cluster，那么多个broker之间也可以存在副本机制，既leader和follower,这样可以提高容灾能力，当一个broker不可用的时候，数据不会丢失。</p>
+<p>Kafka中broker之间的副本机制主要是通过producer的acks来决定的，不同的acks等级有不同的严格程度</p>
+<ol>
+<li><p>acks&#x3D;0</p>
+<p>如果producer设置的acks&#x3D;0的话，producer只管发送消息，不管是否保存，性能最好但是可靠性最差</p>
+</li>
+<li><p>acks&#x3D;1</p>
+<p>producer给leader的broker发送消息后，需要等待leader返回ack后才会继续发送</p>
+</li>
+<li><p>acks&#x3D;-1</p>
+<p>producer给leader的broker发送消息后，需要等待所有broker副本完成数据同步后才会进行下一个发送。可靠性最强</p>
+</li>
+</ol>
+<h4 id="Kafka中消息的顺序消费"><a href="#Kafka中消息的顺序消费" class="headerlink" title="Kafka中消息的顺序消费"></a>Kafka中消息的顺序消费</h4><p>我们知道Kafka中的消息实际是存放在partition中的，而partiton又是依赖于topic的，而一个topic中会有多个partition，那么我们发送的消息是如何保证消费顺序的呢。这里先顺便说一下，Kafka在向partition中存放消息的时候，会进行尾插法，将最新的数据放到最后，这是通过offset来保证的。</p>
+<ol>
+<li>最简单的方法就是一个topic只对应一个partition，这样就可以保证消息消费的顺序性，但是并发性大大下降，违背了Kafka的设计初衷，不推荐使用</li>
+<li>在Kafka中发送消息的时候，可以指定topic、partition、key、data，同一个key中的数据会放到同一个partition中，所以我们可以在发送消息的时候来指定partition&#x2F;key来保证消息到一个partition中，只要在同一个partition中那么就可以保证顺序消费了。</li>
+</ol>
+<h4 id="Kafka中的Rebalance"><a href="#Kafka中的Rebalance" class="headerlink" title="Kafka中的Rebalance"></a>Kafka中的Rebalance</h4><p>概念</p>
+<p>Kafka中的Rebalance称之为再均衡。是Kafka确保Consumer Group下所有的consumer如何达成一致，分配订阅topic下的每个分区的机制。</p>
+<p>会触发Rebalance的几种情况</p>
+<ol>
+<li>consumer group中的consumer实例改变</li>
+<li>订阅的topic发生了变化，比如本来一个consumer group订阅了三个topic,突然有一个topic下线了，就会触发rebalance</li>
+<li>topic中的分区改变</li>
+</ol>
+<p>rebalance的缺点</p>
+<p>consumer group中的consumer在进行rebalance的时候，整个服务是不可用的。</p>
+<h4 id="AR、ISR、OSR的概念"><a href="#AR、ISR、OSR的概念" class="headerlink" title="AR、ISR、OSR的概念"></a>AR、ISR、OSR的概念</h4><ul>
+<li><p>AR</p>
+<p>分区的所有副本叫做AR</p>
+</li>
+<li><p>ISR</p>
+<p>与leader保持一定同步程度的副本叫做ISR</p>
+</li>
+<li><p>OSR</p>
+<p>由于follower副本同步滞后过多的副本叫做OSR</p>
+</li>
+</ul>
+<p>AR&#x3D;ISR+OSR</p>
+<p>但是一般AR&#x3D;ISR,OSR为空</p>
+<h4 id="leader的选举"><a href="#leader的选举" class="headerlink" title="leader的选举"></a>leader的选举</h4><p>Kafka中leader宕机之后需要立刻从follower中选举出新的leader,这个选举过程不是zookeeper那样的选举，而是比zookeeper的选举快的多。因为Kafka是用来处理大数据量的，如果选举太慢的话会严重影响性能和业务。如果Kafka业务量大的话会有多个partition，一旦一个broker宕机的话会触发多个partition的leader选举。如果使用zookeeper的选举方式的话肯定很慢了。</p>
+<p>Kafka中的leader的选举其实是通过controller来进行的。controller是针对broker的，每一个broker创建的时候都会去zookeeper中申请成为controller，但是只有一个broker会成为controller。</p>
+<p>Kafka中的topic的创建、添加分区、修改副本数量等操作都是由这个controller来完成的。</p>
+<p>而controller也是高可用的，一旦这个controller宕机了，会从其他的broker中快速选举一个controller</p>
+<h5 id="controller选举leader的过程"><a href="#controller选举leader的过程" class="headerlink" title="controller选举leader的过程"></a>controller选举leader的过程</h5><p>当leader宕机之后，controller回去对应的partition的ISR中随机选择一个副本作为leader,如果ISR中没有副本了，则会在所有的副本中随机选择一个副本作为leader，如果这个partition一个副本都没有了，那么leader设置为-1</p>
+<h4 id="Kafka的数据存储形式"><a href="#Kafka的数据存储形式" class="headerlink" title="Kafka的数据存储形式"></a>Kafka的数据存储形式</h4><p>一个topic中有多个partition，一个partition中有多个segment，一个segment中有多个文件（log,index,timeIndex）</p>
+<p><img src="https://cdn.jsdelivr.net/gh/EyeDroplyq/myblog-img@master/kafka%E4%B8%AD%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E5%BD%A2%E5%BC%8F.png" alt="kafka中数据存储形式.png"></p>
+<table>
+<thead>
+<tr>
+<th>文件名</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>00000000000000000000.index</td>
+<td>索引文件，根据offset查找数据就是通过该索引文件来操作的</td>
+</tr>
+<tr>
+<td>00000000000000000000.log</td>
+<td>日志数据文件,里面存放的其实是实际的数据</td>
+</tr>
+<tr>
+<td>00000000000000000000.timeindex</td>
+<td>时间索引</td>
+</tr>
+<tr>
+<td>leader-epoch-checkpoint</td>
+<td>日志文件中下一条待写入消息的offset</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>每个日志文件的文件名为起始偏移量，因为每个分区的起始偏移量是0，所以，分区的日志文件都以0000000000000000000.log开始</p>
+</li>
+<li><p>默认的每个日志文件最大为「log.segment.bytes &#x3D;1024<em>1024</em>1024」1G</p>
+</li>
+<li><p>为了简化根据offset查找消息，Kafka日志文件名设计为开始的偏移量</p>
+</li>
+</ul>
+<h4 id="Kafka中数据的读取过程"><a href="#Kafka中数据的读取过程" class="headerlink" title="Kafka中数据的读取过程"></a>Kafka中数据的读取过程</h4><p>​	注意：Kafka中的数据的读取采用的是拉的模式，主动去拉取数据</p>
+<ol>
+<li>首先根据全局的offset去查找对应的segment端</li>
+<li>根据查找到的segment端找到对应文件的segment端的offset</li>
+<li>根据segment端的offset来读取数据</li>
+<li>为了提高查询效率，每个文件都会维护对应的范围内存，查找的时候就是使用简单的二分查找</li>
+</ol>
+<h4 id="Kafka中数据的写入过程"><a href="#Kafka中数据的写入过程" class="headerlink" title="Kafka中数据的写入过程"></a>Kafka中数据的写入过程</h4><ol>
+<li>去zookeeper中找对对应partition的leader位置</li>
+<li>发送消息给leader</li>
+<li>leader将消息写入日志文件中</li>
+<li>follower拉取leader中的消息并且写入自己的日志文件中</li>
+<li>leader给producer返回ack</li>
+</ol>
+<h4 id="Kafka生产者写入数据的策略"><a href="#Kafka生产者写入数据的策略" class="headerlink" title="Kafka生产者写入数据的策略"></a>Kafka生产者写入数据的策略</h4><ol>
+<li><p>轮询分区策略</p>
+<p>轮流给各个分区中写入数据</p>
+</li>
+<li><p>随机分区策略</p>
+<p>随机给各个分区中写入数据</p>
+</li>
+<li><p>指定key分区策略</p>
+<p>按照key给各个分区写入数据，同一个key会分配到同一个分区</p>
+</li>
+<li><p>自定义分区策略</p>
+<p>自定义写入分区的规则</p>
+</li>
+</ol>
+<h4 id="Kafka中的日志删除"><a href="#Kafka中的日志删除" class="headerlink" title="Kafka中的日志删除"></a>Kafka中的日志删除</h4><p>我们不可能让所有的日志一直保存，那样的话我们没有那么大的磁盘空间，所以我们需要对日志进行清楚，所以就有了Kafka中的日志清除</p>
+<p>Kafka中的日志清除一共有三种策略：</p>
+<ol>
+<li><p>基于时间的保留策略</p>
+<p>我们可以设置日志的保留时间长短，超过这个时间之后就会标记为可删除</p>
+</li>
+<li><p>基于日志大小的保留策略</p>
+<p>可以设置我们保留的日志的最大大小，超过这个大小之后就会标记为可删除</p>
+</li>
+<li><p>基于日志起始偏移量的保留策略</p>
+<p>每个segment日志都有它的起始偏移量，如果起始偏移量小于logStartOffset，那么这些日志文件就会被标记为可删除</p>
+</li>
+</ol>
+<p>Kafka中有一个线程会定期去扫描所有被标记为可删除的文件，然后去执行真正的删除</p>
+<h4 id="Kafka如何保证消息不丢失的"><a href="#Kafka如何保证消息不丢失的" class="headerlink" title="Kafka如何保证消息不丢失的"></a>Kafka如何保证消息不丢失的</h4><p>Kafka保证消息不丢失主要是从两个方面来保证的，一方面是从生产者方面来保证消息不丢失，另一方面是从消费者方面来保证消息不丢失</p>
+<ul>
+<li><p>生产者保证消息不丢失</p>
+<p>producer发送了消息之后我们不知道是不是真正的发送成功了，我们可以使用get()方法来判断是不是能拿到我们发送的数据，如何可以拿到的话说明这个消息发送成功了，反之说明消息发送失败，就需要进行重试。但是producer的send是异步操作，而get是同步操作，所以不推荐这样做。而是推荐使用回调函数，如果没有异常说明发送成功，如果有异常的话，处理异常之后重新发送</p>
+<p>producer的acks设置为acks&#x3D;-1&#x2F;acks&#x3D;all</p>
+<p>设置 replication.factor &gt;&#x3D; 3，保证每一个leader至少有三个follower</p>
+<p>设置 min.insync.replicas&gt; 1，保证至少被两个副本写入之后才算是发送成功。</p>
+<p>但是要注意replication.factor&gt;min.insync.replicas,不然的话只要有一个副本没有写入，整个服务就不可用了，一般的设置是replication.factor&#x3D;min.insync.replicas+1</p>
+</li>
+</ul>
+<p>重试机制：我们一般需要给producer设置一个retry次数，还需要给producer设置重试间隔时间，因为如果间隔太短的话，因为网络抖动可能都会立刻失败，所以适当提高重试间隔时间。</p>
+<ul>
+<li><p>消费者保证消息不丢失	</p>
+<p>当消费者消费partition中的消息之后会自动提交对应的offset，但是这个自动提交会导致消息丢失，比如我们还没有处理完真正的业务逻辑的时候宕机了，实际这条消息没有处理，但是已经自动提交了，所以这个消息就丢失了。解决办法就是取消自动提交offset，采用手动提交offset，但是对应的问题就是可能会导致消息的重复消费，比如我们已经处理完成业务逻辑了，但是还没有手动提交offset的时候宕机了，下次重启之后依然会去消费这个消息，但是实际上已经消费过了。</p>
+<p>解决方案：</p>
+<ol>
+<li><p>我们可以使用事务，比如我们进行实际业务处理的时候会使用MySQL，那么我们就可以将业务逻辑和提交offset放到一个事务中，这样就既不会丢失，又不会重复消费了。</p>
+</li>
+<li><p>做消息消费的幂等性处理，比如使用redis的set操作，或者mysql中的主键等天然幂等功能。</p>
+</li>
+</ol>
+</li>
+</ul>
+<p>如果一个消息在规定的重试次数和重试间隔后依然不能被正常的消费的话，那么就把它丢到死信队列中进行进一步的处理，这样也不会将消息丢弃。</p>
+<h4 id="消息积压"><a href="#消息积压" class="headerlink" title="消息积压"></a>消息积压</h4><p>如果我们生产者生产的消息不能及时的被消费者消费的话就会造成Kafka中的消息积压，就会导致实时性下降</p>
+<p>一般会导致数据积压的几种情况：</p>
+<ol>
+<li>消费者消费的业务出错，比如消费者消费这个消息的时候进行的业务是需要进行mysql操作的，结果mysql报错了，那么就无法消费消息了，导致消息积压</li>
+<li>网络抖动，比如我们设置的消费者的消费超时时间为50ms,但是因为网络抖动导致在这个时间内一直无法消费，所以导致了消息积压，如果想要解决可以适当的调大超时时间</li>
+</ol>
+<p>我们的系统必须要保证消费端的性能高于生产端才可以保证系统正常的运行，如果消费端的性能低于生产端的性能，那么久而久之必然会造成消息积压</p>
+<p>如果因为消费端造成了消息的积压的话，我们一般可以增加消费者实例，但是同时要增加对应的partition，因为一个消费者只能去消费一个对应的partition，如果我们只增加了实例而没有增加partition的话，其实相当于没有增加实例，没用。</p>
+<p>此时，我们要使用监控系统来实时监控生产端和消费端的速率，如果出现问题能够快速发现和定位。</p>
+<h4 id="Kafka配额限速机制"><a href="#Kafka配额限速机制" class="headerlink" title="Kafka配额限速机制"></a>Kafka配额限速机制</h4><p>如果生产者和消费者都大量的生产和消费消息，可能会占用broker上的所有的网络IO，可能会导致个别业务压爆服务器。为了防止这个问题的出现，Kafka可以进行配额限速，对生产者和消费者的produce&amp;fetch操作进行流量限制。</p>
+<p>END….</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 1525761478@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2017-2024 Carllyq
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
