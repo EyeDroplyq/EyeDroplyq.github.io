@@ -13,13 +13,13 @@
 <meta property="og:site_name" content="我的博客">
 <meta property="og:description" content="RPC系统设计RPC系统设计架构图 设计方案首先一个RPC系统的设计主要由下面的几部分组成：  注册中心  ​	服务提供者将自己的ip地址和端口号注册到注册中心，服务消费者从注册中心中进行订阅然后得到对应的服务的地址来进行调用  服务提供者  ​	服务的提供者  服务消费者  ​	服务的消费者  序列化&#x2F;反序列化  ​	在网络传输中只能传输二进制对象，不能直接传输Java中的Java B">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/there-is-xiao-zheng-at-home/blog-img/raw/master/RPC%E6%A1%86%E6%9E%B6%E7%9A%84%E8%AE%BE%E8%AE%A1/RPC%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%9E%B6%E6%9E%84.png">
+<meta property="og:image" content="https://github.com/EyeDroplyq/myblog-img/blob/master/RPC%E6%A1%86%E6%9E%B6%E7%9A%84%E8%AE%BE%E8%AE%A1/RPC%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%9E%B6%E6%9E%84.png?raw=true">
 <meta property="article:published_time" content="2023-12-01T08:44:48.000Z">
-<meta property="article:modified_time" content="2023-12-02T08:51:50.378Z">
+<meta property="article:modified_time" content="2023-12-02T09:10:50.843Z">
 <meta property="article:author" content="Carl-LYQ">
 <meta property="article:tag" content="RPC系统设计">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/there-is-xiao-zheng-at-home/blog-img/raw/master/RPC%E6%A1%86%E6%9E%B6%E7%9A%84%E8%AE%BE%E8%AE%A1/RPC%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%9E%B6%E6%9E%84.png">
+<meta name="twitter:image" content="https://github.com/EyeDroplyq/myblog-img/blob/master/RPC%E6%A1%86%E6%9E%B6%E7%9A%84%E8%AE%BE%E8%AE%A1/RPC%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%9E%B6%E6%9E%84.png?raw=true">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -409,19 +409,19 @@
         
         
         <a  class="全部文章 系统设计 "
-           href="/2023/12/01/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E7%9A%84%E8%AE%BE%E8%AE%A1/"
-           data-tag="配置中心的设计"
+           href="/2023/12/01/%E7%BB%9F%E8%AE%A1%E7%BD%91%E7%AB%99UV%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/"
+           data-tag="统计网站UV设计方案"
            data-author="" >
-            <span class="post-title" title="配置中心的设计">配置中心的设计</span>
+            <span class="post-title" title="统计网站UV设计方案">统计网站UV设计方案</span>
             <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
         </a>
         
         
         <a  class="全部文章 系统设计 "
-           href="/2023/12/01/%E7%BB%9F%E8%AE%A1%E7%BD%91%E7%AB%99UV%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/"
-           data-tag="统计网站UV设计方案"
+           href="/2023/12/01/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E7%9A%84%E8%AE%BE%E8%AE%A1/"
+           data-tag="配置中心的设计"
            data-author="" >
-            <span class="post-title" title="统计网站UV设计方案">统计网站UV设计方案</span>
+            <span class="post-title" title="配置中心的设计">配置中心的设计</span>
             <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
         </a>
         
@@ -490,7 +490,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-12-02 16:42:51'>2017-01-23 11:41</time>
+            发布时间 : <time class="date" title='最后更新: 2023-12-02 17:11:42'>2017-01-23 11:41</time>
         
     </div>
     <div class="article-meta">
@@ -529,7 +529,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="乘车系统的设计"><a href="#乘车系统的设计" class="headerlink" title="乘车系统的设计"></a>乘车系统的设计</h2><h4 id="一、乘车系统的基础功能"><a href="#一、乘车系统的基础功能" class="headerlink" title="一、乘车系统的基础功能"></a>一、乘车系统的基础功能</h4><h5 id="1-用户注册和登录功能"><a href="#1-用户注册和登录功能" class="headerlink" title="1.用户注册和登录功能"></a>1.用户注册和登录功能</h5><h5 id="2-二维码生成功能"><a href="#2-二维码生成功能" class="headerlink" title="2.二维码生成功能"></a>2.二维码生成功能</h5><h5 id="3-支付功能"><a href="#3-支付功能" class="headerlink" title="3.支付功能"></a>3.支付功能</h5><h5 id="4-线路查询功能"><a href="#4-线路查询功能" class="headerlink" title="4.线路查询功能"></a>4.线路查询功能</h5><h5 id="5-获取地铁实时位置功能"><a href="#5-获取地铁实时位置功能" class="headerlink" title="5.获取地铁实时位置功能"></a>5.获取地铁实时位置功能</h5><h5 id="6-查询交易记录功能"><a href="#6-查询交易记录功能" class="headerlink" title="6.查询交易记录功能"></a>6.查询交易记录功能</h5><p>功能需求图如下所示：</p>
-<p><img src="https://gitee.com/there-is-xiao-zheng-at-home/blog-img/raw/master/%E4%B9%98%E8%BD%A6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82%E5%9B%BE.png" alt="功能需求图"></p>
+<p><img src="https://github.com/EyeDroplyq/myblog-img/blob/master/%E4%B9%98%E8%BD%A6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%8A%9F%E8%83%BD%E9%9C%80%E6%B1%82%E5%9B%BE.png?raw=true" alt="功能需求图"></p>
 <h4 id="二、设计"><a href="#二、设计" class="headerlink" title="二、设计"></a>二、设计</h4><ul>
 <li>用户注册和登录功能</li>
 </ul>
@@ -561,7 +561,7 @@
 </ul>
 <p>​	根据支付后保存的流水信息来提供查询交易记录功能</p>
 <p>整个系统的运行流程如图所示：</p>
-<p><img src="https://gitee.com/there-is-xiao-zheng-at-home/blog-img/raw/master/%E4%B9%98%E8%BD%A6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="整体流程图.png"></p>
+<p><img src="https://github.com/EyeDroplyq/myblog-img/blob/master/%E4%B9%98%E8%BD%A6%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B%E5%9B%BE.png?raw=true" alt="整体流程图.png"></p>
 <h4 id="三、乘车系统的非功能需求"><a href="#三、乘车系统的非功能需求" class="headerlink" title="三、乘车系统的非功能需求"></a>三、乘车系统的非功能需求</h4><ol>
 <li>用户分布不均</li>
 </ol>
