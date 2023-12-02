@@ -6,20 +6,22 @@
   <meta name="keywords" content=" Feed流/信息流 系统设计方案 ">
   <meta name="description" content="Feed流/信息流 系统设计方案 | 我的博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="RPC系统设计RPC系统设计架构图 设计方案首先一个RPC系统的设计主要由下面的几部分组成：  注册中心  ​	服务提供者将自己的ip地址和端口号注册到注册中心，服务消费者从注册中心中进行订阅然后得到对应的服务的地址来进行调用  服务提供者  ​	服务的提供者  服务消费者  ​	服务的消费者  序列化&#x2F;反序列化  ​	在网络传输中只能传输二进制对象，不能直接传输Java中的Java B">
+<meta name="description" content="Feed流&#x2F;信息流 系统设计方案何为feed流&#x2F;信息流?简单的来说，能够实时&#x2F;智能化推荐信息的数据流就是Feed流&#x2F;信息流。常见的比如：微信朋友圈、微博关注、头条首页等 如何设计？设计Feed流&#x2F;信息流有两个角度，第一个是实时性，就是简单的根据时间的先后顺序来进行推荐，这种方案比较简单实现。 另一个角度就是智能化推荐，可以根据用户的喜好来进行推荐用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="RPC系统设计">
-<meta property="og:url" content="http://eyedroplyq.github.io/2023/12/01/RPC%E6%A1%86%E6%9E%B6%E7%9A%84%E8%AE%BE%E8%AE%A1/index.html">
+<meta property="og:title" content="Feed流&#x2F;信息流 系统设计方案">
+<meta property="og:url" content="http://eyedroplyq.github.io/2023/12/01/feed%E6%B5%81%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B5%81%EF%BC%89%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/index.html">
 <meta property="og:site_name" content="我的博客">
-<meta property="og:description" content="RPC系统设计RPC系统设计架构图 设计方案首先一个RPC系统的设计主要由下面的几部分组成：  注册中心  ​	服务提供者将自己的ip地址和端口号注册到注册中心，服务消费者从注册中心中进行订阅然后得到对应的服务的地址来进行调用  服务提供者  ​	服务的提供者  服务消费者  ​	服务的消费者  序列化&#x2F;反序列化  ​	在网络传输中只能传输二进制对象，不能直接传输Java中的Java B">
+<meta property="og:description" content="Feed流&#x2F;信息流 系统设计方案何为feed流&#x2F;信息流?简单的来说，能够实时&#x2F;智能化推荐信息的数据流就是Feed流&#x2F;信息流。常见的比如：微信朋友圈、微博关注、头条首页等 如何设计？设计Feed流&#x2F;信息流有两个角度，第一个是实时性，就是简单的根据时间的先后顺序来进行推荐，这种方案比较简单实现。 另一个角度就是智能化推荐，可以根据用户的喜好来进行推荐用">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/EyeDroplyq/myblog-img/blob/master/RPC%E6%A1%86%E6%9E%B6%E7%9A%84%E8%AE%BE%E8%AE%A1/RPC%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%9E%B6%E6%9E%84.png?raw=true">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/EyeDroplyq/myblog-img@master/Feed%E6%B5%81%E7%9A%84%E6%8E%A8%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/EyeDroplyq/myblog-img@master/Feed%E6%B5%81%E7%9A%84%E6%8B%89%E6%A8%A1%E5%BC%8F.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/EyeDroplyq/myblog-img@master/Feed%E6%B5%81%E6%8E%A8%E6%8B%89%E6%A8%A1%E5%BC%8F.png">
 <meta property="article:published_time" content="2023-12-01T08:44:48.000Z">
-<meta property="article:modified_time" content="2023-12-02T09:10:50.843Z">
+<meta property="article:modified_time" content="2023-12-02T10:29:00.738Z">
 <meta property="article:author" content="Carl-LYQ">
-<meta property="article:tag" content="RPC系统设计">
+<meta property="article:tag" content="Feed流&#x2F;信息流 系统设计方案">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/EyeDroplyq/myblog-img/blob/master/RPC%E6%A1%86%E6%9E%B6%E7%9A%84%E8%AE%BE%E8%AE%A1/RPC%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%9E%B6%E6%9E%84.png?raw=true">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/EyeDroplyq/myblog-img@master/Feed%E6%B5%81%E7%9A%84%E6%8E%A8%E6%A8%A1%E5%BC%8F.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -266,19 +268,19 @@
         
         
         <a  class="全部文章 系统设计 "
-           href="/2023/12/01/RPC%E6%A1%86%E6%9E%B6%E7%9A%84%E8%AE%BE%E8%AE%A1/"
-           data-tag="RPC系统设计"
+           href="/2023/12/01/feed%E6%B5%81%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B5%81%EF%BC%89%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/"
+           data-tag="Feed流/信息流 系统设计方案"
            data-author="" >
-            <span class="post-title" title="RPC系统设计">RPC系统设计</span>
+            <span class="post-title" title="Feed流/信息流 系统设计方案">Feed流/信息流 系统设计方案</span>
             <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
         </a>
         
         
         <a  class="全部文章 系统设计 "
-           href="/2023/12/01/feed%E6%B5%81%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B5%81%EF%BC%89%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/"
-           data-tag="Feed流/信息流 系统设计方案"
+           href="/2023/12/01/RPC%E6%A1%86%E6%9E%B6%E7%9A%84%E8%AE%BE%E8%AE%A1/"
+           data-tag="RPC系统设计"
            data-author="" >
-            <span class="post-title" title="Feed流/信息流 系统设计方案">Feed流/信息流 系统设计方案</span>
+            <span class="post-title" title="RPC系统设计">RPC系统设计</span>
             <span class="post-date" title="2023-12-01 16:44:48">2023/12/01</span>
         </a>
         
@@ -372,7 +374,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-12-02 17:12:37'>2023-12-01 16:44</time>
+            发布时间 : <time class="date" title='最后更新: 2023-12-02 18:29:00'>2023-12-01 16:44</time>
         
     </div>
     <div class="article-meta">
@@ -420,15 +422,15 @@
 <h5 id="2、高并发"><a href="#2、高并发" class="headerlink" title="2、高并发"></a>2、高并发</h5><p>举个简单的例子，对于微博来说，所有用户打开微博之后进去先看到的就是推荐的页面，也就是feed流推送过来的数据，所以这个并发量是很大的。</p>
 <h5 id="3、高性能"><a href="#3、高性能" class="headerlink" title="3、高性能"></a>3、高性能</h5><p>还是用微博来说，对于推荐的页面的显示，微博可能需要聚合非常多的信息，所以性能的高低直接决定了用户的体验感，所以对于性能有很高的要求。</p>
 <h4 id="设计Feed流数据的几种推送模式"><a href="#设计Feed流数据的几种推送模式" class="headerlink" title="设计Feed流数据的几种推送模式"></a>设计Feed流数据的几种推送模式</h4><h5 id="1、推模式-写扩散"><a href="#1、推模式-写扩散" class="headerlink" title="1、推模式(写扩散)"></a>1、推模式(写扩散)</h5><p>以微博为例，当一个up发表了一个动态之后，会将这个动态同时发送给所有关注了他的用户。所以这种模式叫做推模式。</p>
-<p><img src="https://github.com/EyeDroplyq/myblog-img/blob/master/feed%E6%B5%81%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B5%81%EF%BC%89%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/Feed%E6%B5%81%E7%9A%84%E6%8E%A8%E6%A8%A1%E5%BC%8F.png?raw=true" alt="推模式"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/EyeDroplyq/myblog-img@master/Feed%E6%B5%81%E7%9A%84%E6%8E%A8%E6%A8%A1%E5%BC%8F.png" alt="推模式"></p>
 <p><strong>问题</strong>：这种模式有一个很大的问题，如果当前发布动态的up是一个大V，拥有几千万的粉丝的话，如果他发布一条动态给所有关注他的用户推的话，那么会产生大量的插入语句，而且性能也是很差的。存储成本太高。所以不适合粉丝数很多的大V。</p>
 <h5 id="2、拉模式-读扩散"><a href="#2、拉模式-读扩散" class="headerlink" title="2、拉模式(读扩散)"></a>2、拉模式(读扩散)</h5><p>以微博为例，一个用户登录之后会去主动拉取他关注的up的最新的动态。</p>
-<p><img src="https://github.com/EyeDroplyq/myblog-img/blob/master/feed%E6%B5%81%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B5%81%EF%BC%89%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/Feed%E6%B5%81%E7%9A%84%E6%8B%89%E6%A8%A1%E5%BC%8F.png?raw=true" alt="拉模式"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/EyeDroplyq/myblog-img@master/Feed%E6%B5%81%E7%9A%84%E6%8B%89%E6%A8%A1%E5%BC%8F.png" alt="拉模式"></p>
 <p><strong>问题</strong>：拉模式依然有问题，如果一个用户关注的人非常多，那么在他登录的时候，feed流会去拉取非常多的数据然后再进行数据的聚合然后再给他显示出来，这个过程可能耗时比较多，所以性能就会差点，给用户的体验感就不是很好了。查询和聚合的成本太高，而且拉模式比推模式的实时性更差。</p>
 <p>​	而且拉模式还有一个很致命的问题，很容易是我们系统的故障点的就是：对于一个大V来说，它需要记录每个用户读到的数据的位置，这个数据量是很大的，也是很容易出问题的地方。每个关注者读取这个大V的数据的位置可能都不一样。</p>
 <h5 id="3、推拉结合的模式-读写扩散"><a href="#3、推拉结合的模式-读写扩散" class="headerlink" title="3、推拉结合的模式(读写扩散)"></a>3、推拉结合的模式(读写扩散)</h5><p>以微博为例，推拉结合的模式的核心是针对大V和不活跃用户来进行处理的。首先指定两个指标，一个来指定多少用户数是大V，另一个用来指定登录频率多少为活跃用户。</p>
 <p>当大V在发布动态的时候，会将动态使用推的模式发送给他的粉丝中的活跃用户，对于不活跃的用户使用拉的模式来获得他关注的up的动态。</p>
-<p><img src="https://github.com/EyeDroplyq/myblog-img/blob/master/feed%E6%B5%81%EF%BC%88%E4%BF%A1%E6%81%AF%E6%B5%81%EF%BC%89%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/Feed%E6%B5%81%E6%8E%A8%E6%8B%89%E6%A8%A1%E5%BC%8F.png?raw=true" alt="Feed流推拉模式"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/EyeDroplyq/myblog-img@master/Feed%E6%B5%81%E6%8E%A8%E6%8B%89%E6%A8%A1%E5%BC%8F.png" alt="Feed流推拉模式"></p>
 <h5 id="三种模式的小总结："><a href="#三种模式的小总结：" class="headerlink" title="三种模式的小总结："></a>三种模式的小总结：</h5><p>1、如果我们的系统中用户之间是双向关系，也就是双向关注的话，不会存在大V，所以推荐使用推模式（写扩散）</p>
 <p>2、如果我们的系统中是单向关系，并且用户数小于1000万的话，虽然有大V的存在，但是数据量不大，所以也是推荐使用推模式</p>
 <p>3、如果我们的系统用户之间是双向关系，并且用户数大于1000万的话，有数据量大的大V存在了，所以推荐使用推拉结合的模式。</p>
